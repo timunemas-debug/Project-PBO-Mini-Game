@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class ChooseCharacter {
     private Scanner input = new Scanner(System.in);
-
     private Draven draven = new Draven("Draven", 85, 30, 0, 0, false, 85);
     private Lyra lyra = new Lyra("Lyra", 90, 25, 0, 0, false, 90);
     private Kaelion kaelion = new Kaelion("Kaelion", 110, 20, 0, 0, false, 110);

@@ -46,7 +46,7 @@ public class DisplayMenu {
                 System.out.println("Memasuki permainan....");
                 choose.chooseCharacter();
                 selectedCharacter = choose.getSelectCharacter();
-                Pertempuran pertempuran = new Pertempuran(selectedCharacter, goblin);
+                Pertempuran pertempuran = new Pertempuran(selectedCharacter);
                 pertempuran.startPertempuran();
             }
             else if(menu == 2){

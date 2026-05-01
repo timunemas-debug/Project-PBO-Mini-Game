@@ -6,16 +6,16 @@ import project.Character.Heal;
 
 public class Pertempuran {
     private Character player;
-    private Character enemy;
+    private RandomNE encounter;
     private Scanner input = new Scanner(System.in);
 
-    public Pertempuran(Character player, Character enemy){
+    public Pertempuran(Character player){
         this.player = player;
-        this.enemy = enemy;
+        encounter = new RandomNE(player);
     }
 
     public void startPertempuran(){
-        while (player.getHp() > 0 && enemy.getHp() > 0) {
+        while (player.getHp() > 0) {
             
             System.out.println("------------------------------");
             System.out.println("             Aksi             ");
@@ -28,19 +28,10 @@ public class Pertempuran {
             input.nextLine();
 
             if(pilihAksi == 1){
-                System.out.print("\nAnda bertemu dengan " + enemy.getUsername() + " Apakah anda ingin menyerang? (Y/N): ");
-                String penyerangan = input.nextLine();
-                if(penyerangan.equalsIgnoreCase("Y")){
-                    player.attackCharacter(enemy);
-                }else{
-                    System.out.println("Anda melewati " + enemy.getUsername());
-                }
+                encounter.randomEncounter();
             }
             else if(pilihAksi == 2){
                 ((Heal) player).heal();
-            }
-            if(enemy.getHp() > 0){
-                enemy.attackCharacter(player);
             }
         }
         if(player.getHp() <= 10){
