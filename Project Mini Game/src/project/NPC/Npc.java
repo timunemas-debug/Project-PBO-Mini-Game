@@ -1,4 +1,4 @@
-package project;
+package project.NPC;
 
 public class Npc {
     private String nama;

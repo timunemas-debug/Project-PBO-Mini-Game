@@ -1,13 +1,14 @@
-package project;
+package project.CharacterMiniGame;
 
-import project.Character.GetChest;
-import project.Character.Heal;
-import project.Character.DisplayPlayer;
+import project.Reward;
+import project.CharacterMiniGame.Character.DisplayPlayer;
+import project.CharacterMiniGame.Character.GetChest;
+import project.CharacterMiniGame.Character.Heal;
 
 public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
     private double coin, maxHp;
     private int level;
-    Kaelion(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
+    public Kaelion(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
         super(username, hp, attackPower,alive);
         this.maxHp = maxHp;
         this.coin = coin;
@@ -71,7 +72,7 @@ public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
     @Override
     public void getChest(){
         System.out.println("Selamat anda mendapatkan Chest!");
-        RewardPool reward = new RewardPool();
+        Reward reward = new Reward();
         reward.getRandomItem();
     }
 

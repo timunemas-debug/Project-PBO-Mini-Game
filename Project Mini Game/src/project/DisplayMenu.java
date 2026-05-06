@@ -2,7 +2,9 @@ package project;
 
 import java.util.Scanner;
 
-import project.Character.DisplayPlayer;
+import project.CharacterMiniGame.Character;
+import project.CharacterMiniGame.Character.DisplayPlayer;
+import project.Enemy.Goblin;
 
 public class DisplayMenu {
     private Scanner input = new Scanner(System.in);

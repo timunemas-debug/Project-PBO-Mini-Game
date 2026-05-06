@@ -1,14 +1,19 @@
-package project;
+package project.CharacterMiniGame;
 
-import project.Character.GetChest;
-import project.Character.Heal;
-import project.Character.DisplayPlayer;
+import project.Item;
+import project.Reward;
+import project.CharacterMiniGame.Character.DisplayPlayer;
+import project.CharacterMiniGame.Character.GetChest;
+import project.CharacterMiniGame.Character.Heal;
 
-public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
-    private double coin, maxHp;
+public class Draven extends Character implements Heal, GetChest, DisplayPlayer {
+    private double maxHp, coin;
     private int level;
-    Lyra(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
+    public Draven(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
+        this.maxHp = maxHp;
+        this.coin = coin;
+        this.level = level;
     }
 
     public double getCoin() {
@@ -36,7 +41,7 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
         if(getHp() >= getMaxHp()){
             System.out.println("Darah sudah tidak bisa ditambah!");
         }else{
-            setHp(getHp() + 10);
+            setHp(Math.min(getHp() + 10, getMaxHp()));
             System.out.println(getUsername() + " Menambah Darah ");
         }
     }
@@ -48,7 +53,7 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
         if(enemy.getHp() <= 0){
             enemy.setHp(0);
             enemy.setAlive(false);
-            System.out.println(enemy.getUsername() + " telah kalah");
+            System.out.println(enemy.getUsername() + " telah kalah ");
         }
     }
     
@@ -60,14 +65,15 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
             setLevel(getLevel() + 1);
             System.out.println("Anda mendapatkan coin sebesar 5 Coin");
         }else{
-            System.out.println(eliminasiTarget.getUsername() + " Masih hidup ");
+            System.out.println(eliminasiTarget.getUsername() + "Masih hidup");
         }
     }
 
     @Override
     public void getChest(){
         System.out.println("Selamat anda mendapatkan Chest!");
-        RewardPool reward = new RewardPool();
+
+        Reward reward = new Reward();
         reward.getRandomItem();
     }
 

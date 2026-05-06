@@ -2,6 +2,11 @@ package project;
 
 import java.util.Scanner;
 
+import project.CharacterMiniGame.Character;
+import project.CharacterMiniGame.Draven;
+import project.CharacterMiniGame.Kaelion;
+import project.CharacterMiniGame.Lyra;
+
 public class ChooseCharacter {
     private Scanner input = new Scanner(System.in);
     private Draven draven = new Draven("Draven", 85, 30, 0, 0, false, 85);

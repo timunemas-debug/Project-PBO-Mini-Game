@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import project.CharacterMiniGame.Character;
+import project.Enemy.Goblin;
+import project.NPC.Npc;
+
 public class RandomNE {
     private ArrayList<Npc> npclist;
     private ArrayList<Goblin> enemylist;

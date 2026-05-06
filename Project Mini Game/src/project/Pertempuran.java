@@ -2,7 +2,8 @@ package project;
 
 import java.util.Scanner;
 
-import project.Character.Heal;
+import project.CharacterMiniGame.Character;
+import project.CharacterMiniGame.Character.Heal;
 
 public class Pertempuran {
     private Character player;

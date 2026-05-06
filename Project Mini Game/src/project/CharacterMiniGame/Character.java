@@ -1,4 +1,4 @@
-package project;
+package project.CharacterMiniGame;
 
 public abstract class Character {
     private String username;
@@ -56,8 +56,8 @@ public abstract class Character {
         void displayPlayer();
     }
     
-    abstract void attackCharacter(Character enemy);
+    public abstract void attackCharacter(Character enemy);
 
-    abstract void eliminasiCharacter(Character eliminasiTarget);
+    public abstract void eliminasiCharacter(Character eliminasiTarget);
 
 }
