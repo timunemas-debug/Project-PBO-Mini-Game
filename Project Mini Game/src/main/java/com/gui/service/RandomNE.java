@@ -1,12 +1,12 @@
-package project;
+package com.gui.service;
 
+import com.gui.model.CharacterMiniGame.Character;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import project.CharacterMiniGame.Character;
-import project.Enemy.Goblin;
-import project.NPC.Npc;
+import com.gui.model.CharacterMiniGame.Enemy.Goblin;
+import com.gui.model.CharacterMiniGame.NPC.Npc;
 
 public class RandomNE {
     private ArrayList<Npc> npclist;
@@ -32,7 +32,7 @@ public class RandomNE {
             Npc npc = npclist.get(random.nextInt(npclist.size()));
             System.out.println("Kamu bertemu dengan " + npc.getNama());
             System.out.println("--------------------------------------------");
-            System.out.print("Apakah anda ingin berbicara dengan ?"+ npc.getNama() + " (Y/N) : ");
+            System.out.print("Apakah anda ingin berbicara dengan ? " + npc.getNama() + " (Y/N) : ");
             String berbicara = input.nextLine();
             if(berbicara.equalsIgnoreCase("Y")){
                 npc.kalimatNpcGretting();

@@ -1,16 +1,14 @@
-package project.CharacterMiniGame;
+package com.gui.model.CharacterMiniGame;
 
-import project.Item;
-import project.Reward;
-import project.CharacterMiniGame.Character.DisplayPlayer;
-import project.CharacterMiniGame.Character.GetChest;
-import project.CharacterMiniGame.Character.Heal;
-
-public class Draven extends Character implements Heal, GetChest, DisplayPlayer {
-    private double maxHp, coin;
+import com.gui.service.Reward;
+import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
+import com.gui.model.CharacterMiniGame.Character.GetChest;
+import com.gui.model.CharacterMiniGame.Character.Heal;
+public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
+    private double coin, maxHp;
     private int level;
-    public Draven(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
-        super(username, hp, attackPower, alive);
+    public Kaelion(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
+        super(username, hp, attackPower,alive);
         this.maxHp = maxHp;
         this.coin = coin;
         this.level = level;
@@ -19,7 +17,7 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer {
     public double getCoin() {
         return coin;
     }
-
+    
     public void setCoin(double coin) {
         this.coin = coin;
     }
@@ -35,13 +33,14 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer {
     public double getMaxHp() {
         return maxHp;
     }
+    
 
     @Override
     public void heal(){
         if(getHp() >= getMaxHp()){
             System.out.println("Darah sudah tidak bisa ditambah!");
         }else{
-            setHp(Math.min(getHp() + 10, getMaxHp()));
+            setHp(getHp() + 10);
             System.out.println(getUsername() + " Menambah Darah ");
         }
     }
@@ -53,7 +52,7 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer {
         if(enemy.getHp() <= 0){
             enemy.setHp(0);
             enemy.setAlive(false);
-            System.out.println(enemy.getUsername() + " telah kalah ");
+            System.out.println(enemy.getUsername() + " telah kalah");
         }
     }
     
@@ -72,7 +71,6 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer {
     @Override
     public void getChest(){
         System.out.println("Selamat anda mendapatkan Chest!");
-
         Reward reward = new Reward();
         reward.getRandomItem();
     }

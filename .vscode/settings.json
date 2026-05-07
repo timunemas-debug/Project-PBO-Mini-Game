@@ -1,0 +1,16 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Project Mini Game/lib/javafx.base.jar",
+        "Project Mini Game/lib/javafx.controls.jar",
+        "Project Mini Game/lib/javafx.fxml.jar",
+        "Project Mini Game/lib/javafx.graphics.jar",
+        "Project Mini Game/lib/javafx.media.jar",
+        "Project Mini Game/lib/javafx.swing.jar",
+        "Project Mini Game/lib/javafx.web.jar",
+        "Project Mini Game/lib/javafx-swt.jar",
+        "Project Mini Game/lib/jdk.jsobject.jar",
+        "Project Mini Game/lib/jfx.incubator.input.jar",
+        "Project Mini Game/lib/jfx.incubator.richtext.jar"
+    ]
+}

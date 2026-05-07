@@ -1,4 +1,4 @@
-package project;
+package com.gui.model.CharacterMiniGame;
 
 public class Item {
     private String name, type;

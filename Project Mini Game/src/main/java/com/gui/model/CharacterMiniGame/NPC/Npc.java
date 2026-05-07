@@ -1,4 +1,4 @@
-package project.NPC;
+package com.gui.model.CharacterMiniGame.NPC;
 
 public class Npc {
     private String nama;

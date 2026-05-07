@@ -1,6 +1,8 @@
-package project;
+package com.gui.service;
 
 import java.util.ArrayList;
+
+import com.gui.model.CharacterMiniGame.Item;
 
 public class Inventory{
     private ArrayList<Item> items = new ArrayList<>();

@@ -1,10 +1,10 @@
-package project;
+package com.gui.service;
 
 import java.util.Scanner;
+import com.gui.model.CharacterMiniGame.Character;
 
-import project.CharacterMiniGame.Character;
-import project.CharacterMiniGame.Character.DisplayPlayer;
-import project.Enemy.Goblin;
+import com.gui.model.CharacterMiniGame.Enemy.Goblin;
+import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 
 public class DisplayMenu {
     private Scanner input = new Scanner(System.in);

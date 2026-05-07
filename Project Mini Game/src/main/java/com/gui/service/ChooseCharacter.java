@@ -1,11 +1,10 @@
-package project;
+package com.gui.service;
 
+import com.gui.model.CharacterMiniGame.Character;
+import com.gui.model.CharacterMiniGame.Draven;
+import com.gui.model.CharacterMiniGame.Lyra;
+import com.gui.model.CharacterMiniGame.Kaelion;
 import java.util.Scanner;
-
-import project.CharacterMiniGame.Character;
-import project.CharacterMiniGame.Draven;
-import project.CharacterMiniGame.Kaelion;
-import project.CharacterMiniGame.Lyra;
 
 public class ChooseCharacter {
     private Scanner input = new Scanner(System.in);
@@ -48,7 +47,7 @@ public class ChooseCharacter {
                 break;
             }
         }
-    }    
+    }
     public Character getSelectCharacter(){
         return selectedCharacter;
   }

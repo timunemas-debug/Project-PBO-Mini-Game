@@ -1,9 +1,10 @@
-package project.Enemy;
+package com.gui.model.CharacterMiniGame.Enemy;
 
-import project.CharacterMiniGame.Character;
+import com.gui.model.CharacterMiniGame.Character;
+import com.gui.service.Reward;
 
-public class Goblin extends Character{
-    public Goblin(String username, double hp, double attackPower, boolean alive){
+public class Dragon extends Character {
+    public Dragon(String username, double hp, double attackPower, boolean alive){
         super(username, hp, attackPower, alive);
     }
 
@@ -15,6 +16,8 @@ public class Goblin extends Character{
             enemy.setHp(0);
             enemy.setAlive(false);
             System.out.println(enemy.getUsername() + " telah kalah");
+            Reward rewardPool = new Reward();
+            rewardPool.getRandomItem();
         }
     }
 

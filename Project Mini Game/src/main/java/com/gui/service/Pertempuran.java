@@ -1,9 +1,9 @@
-package project;
+package com.gui.service;
 
+import com.gui.model.CharacterMiniGame.Character;
 import java.util.Scanner;
 
-import project.CharacterMiniGame.Character;
-import project.CharacterMiniGame.Character.Heal;
+import com.gui.model.CharacterMiniGame.Character.Heal;
 
 public class Pertempuran {
     private Character player;

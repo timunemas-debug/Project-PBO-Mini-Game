@@ -1,4 +1,4 @@
-package project;
+package com.gui.service;
 
 public class Main {
     public static void main(String[] args) {

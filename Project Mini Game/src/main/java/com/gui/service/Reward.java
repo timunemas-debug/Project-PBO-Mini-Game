@@ -1,7 +1,9 @@
-package project;
+package com.gui.service;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.gui.model.CharacterMiniGame.Item;
 
 public class Reward {
         private ArrayList<Item> reward;

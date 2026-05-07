@@ -1,4 +1,4 @@
-package project.CharacterMiniGame;
+package com.gui.model.CharacterMiniGame;
 
 public abstract class Character {
     private String username;

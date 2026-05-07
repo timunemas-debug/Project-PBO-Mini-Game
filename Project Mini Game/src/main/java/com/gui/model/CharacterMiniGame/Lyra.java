@@ -1,24 +1,21 @@
-package project.CharacterMiniGame;
+package com.gui.model.CharacterMiniGame;
 
-import project.Reward;
-import project.CharacterMiniGame.Character.DisplayPlayer;
-import project.CharacterMiniGame.Character.GetChest;
-import project.CharacterMiniGame.Character.Heal;
+import com.gui.service.Reward;
+import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
+import com.gui.model.CharacterMiniGame.Character.GetChest;
+import com.gui.model.CharacterMiniGame.Character.Heal;
 
-public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
+public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
     private double coin, maxHp;
     private int level;
-    public Kaelion(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
-        super(username, hp, attackPower,alive);
-        this.maxHp = maxHp;
-        this.coin = coin;
-        this.level = level;
+    public Lyra(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
+        super(username, hp, attackPower, alive);
     }
 
     public double getCoin() {
         return coin;
     }
-    
+
     public void setCoin(double coin) {
         this.coin = coin;
     }
@@ -34,7 +31,6 @@ public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
     public double getMaxHp() {
         return maxHp;
     }
-    
 
     @Override
     public void heal(){
@@ -65,7 +61,7 @@ public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
             setLevel(getLevel() + 1);
             System.out.println("Anda mendapatkan coin sebesar 5 Coin");
         }else{
-            System.out.println(eliminasiTarget.getUsername() + "Masih hidup");
+            System.out.println(eliminasiTarget.getUsername() + " Masih hidup ");
         }
     }
 
