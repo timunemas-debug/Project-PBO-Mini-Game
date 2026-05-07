@@ -28,7 +28,7 @@ public class RandomNE {
     public void randomEncounter(){
         int chance = random.nextInt(100);
 
-        if(chance < 50){
+        if(chance < 20){
             Npc npc = npclist.get(random.nextInt(npclist.size()));
             System.out.println("Kamu bertemu dengan " + npc.getNama());
             System.out.println("--------------------------------------------");

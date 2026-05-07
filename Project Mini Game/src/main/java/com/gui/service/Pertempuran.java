@@ -4,6 +4,7 @@ import com.gui.model.CharacterMiniGame.Character;
 import java.util.Scanner;
 
 import com.gui.model.CharacterMiniGame.Character.Heal;
+import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;;
 
 public class Pertempuran {
     private Character player;
@@ -23,6 +24,8 @@ public class Pertempuran {
             System.out.println("------------------------------");
             System.out.println("1. Jalan");
             System.out.println("2. Heal");
+            System.out.println("3. Info");
+            System.out.println("4. Keluar");
             System.out.println("------------------------------");
             System.out.print("Pilih aksi : ");
             int pilihAksi = input.nextInt();
@@ -33,6 +36,12 @@ public class Pertempuran {
             }
             else if(pilihAksi == 2){
                 ((Heal) player).heal();
+            }
+            else if(pilihAksi == 3){
+                ((DisplayPlayer) player).displayPlayer();
+            }
+            else if(pilihAksi == 4){
+                break;
             }
         }
         if(player.getHp() <= 10){
