@@ -4,7 +4,7 @@ import com.gui.model.CharacterMiniGame.Character;
 import java.util.Scanner;
 
 import com.gui.model.CharacterMiniGame.Character.Heal;
-import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;;
+import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 
 public class Pertempuran {
     private Character player;
@@ -14,6 +14,10 @@ public class Pertempuran {
     public Pertempuran(Character player){
         this.player = player;
         encounter = new RandomNE(player);
+    }
+
+    public Character getPlayer() {
+        return player;
     }
 
     public void startPertempuran(){

@@ -20,4 +20,9 @@ public class Npc {
     public void misiNpc(){
         System.out.println("Saya ingin meminta bantuan kamu anak muda...");
     }
+
+    public void miniNpcMiniBos(){
+        System.out.println("Apakah kamu melihat naga yang tertidur itu anak muda? ");
+        System.out.println("Lawan lah dia demi saya anak muda...");
+    }
 }

@@ -10,6 +10,9 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
     private int level;
     public Lyra(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
+        this.maxHp = maxHp;
+        this.coin = coin;
+        this.level = level;
     }
 
     public double getCoin() {

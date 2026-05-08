@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.gui.model.CharacterMiniGame.Enemy.Dragon;
 import com.gui.model.CharacterMiniGame.Enemy.Goblin;
 import com.gui.model.CharacterMiniGame.NPC.Npc;
 
 public class RandomNE {
     private ArrayList<Npc> npclist;
     private ArrayList<Goblin> enemylist;
+    private ArrayList<Dragon> miniboslist;
     private Random random;
     private Character player;
     Scanner input = new Scanner(System.in);
@@ -18,11 +20,14 @@ public class RandomNE {
     public RandomNE(Character player){
         npclist = new ArrayList<>();
         enemylist = new ArrayList<>();
+        miniboslist = new ArrayList<>();
         random = new Random();
         this.player = player;
         
         npclist.add(new Npc("Kakek buta"));
         enemylist.add(new Goblin("Goblin", 20, 10, false));
+        miniboslist.add(new Dragon("Dragon", 100, 30, false));
+
     }
 
     public void randomEncounter(){
@@ -30,6 +35,7 @@ public class RandomNE {
 
         if(chance < 20){
             Npc npc = npclist.get(random.nextInt(npclist.size()));
+            Dragon miniBos = miniboslist.get(random.nextInt(miniboslist.size()));
             System.out.println("Kamu bertemu dengan " + npc.getNama());
             System.out.println("--------------------------------------------");
             System.out.print("Apakah anda ingin berbicara dengan ? " + npc.getNama() + " (Y/N) : ");
@@ -37,6 +43,18 @@ public class RandomNE {
             if(berbicara.equalsIgnoreCase("Y")){
                 npc.kalimatNpcGretting();
                 npc.misiNpc();
+                System.out.println("Apakah anda ingin membantu kakek tua? (Y/N) : ");
+                String membantu = input.nextLine();
+                if(membantu.equalsIgnoreCase("Y")){
+                    npc.miniNpcMiniBos();
+                    PertempuranBos pertempuranBos = new PertempuranBos(player, miniBos);
+                    pertempuranBos.startPertempuran();
+                }
+                System.out.println("-------------------------------------------------");
+                System.out.println("Gimana melawan naga itu? pasti kamu kesusahan ya.");
+                System.out.println("Terimakasih ya anak muda..., ini saya kasih kamu hadiah semoga bisa membantu kamu untuk berpetualang");
+                System.out.println("Memberikan hadiah");
+                System.out.println("-------------------------------------------------");
             }
         }
         else if(chance < 80){
