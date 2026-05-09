@@ -6,7 +6,7 @@ import java.util.Random;
 import com.gui.model.CharacterMiniGame.Item;
 
 public class Reward {
-        private ArrayList<Item> reward;
+    private ArrayList<Item> reward;
     private Random random;
 
     public Reward(){

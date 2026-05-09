@@ -18,6 +18,7 @@ public class PertempuranBos extends Pertempuran{
     @Override
     public void startPertempuran(){
         while (enemy.getHp() > 0 && getPlayer().getHp() > 0) {
+            ((DisplayPlayer)enemy).displayPlayer();
             System.out.println("------------------------------");
             System.out.println("             Aksi             ");
             System.out.println("------------------------------");

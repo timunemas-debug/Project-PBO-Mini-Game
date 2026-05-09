@@ -1,9 +1,10 @@
 package com.gui.model.CharacterMiniGame.Enemy;
 
 import com.gui.model.CharacterMiniGame.Character;
+import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 import com.gui.service.Reward;
 
-public class Dragon extends Character {
+public class Dragon extends Character implements DisplayPlayer{
     public Dragon(String username, double hp, double attackPower, boolean alive){
         super(username, hp, attackPower, alive);
     }
@@ -28,5 +29,11 @@ public class Dragon extends Character {
         }else{
             System.out.println(eliminasiTarget.getUsername() + "Masih hidup");
         }
+    }
+
+    @Override
+    public void displayPlayer(){
+        System.out.println("Nama : Dragon");
+        System.out.println("Hp   : " + getHp());
     }
 }

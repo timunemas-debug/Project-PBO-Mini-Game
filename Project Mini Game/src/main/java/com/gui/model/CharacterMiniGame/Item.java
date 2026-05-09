@@ -17,7 +17,9 @@ public class Item {
     }
 
     public void getInfo(){
+        System.out.println("---------------------------------");
         System.out.println("Anda mendapatkan item : " + getName());
         System.out.println("Dengan type : " + getType());
+        System.out.println("---------------------------------");
     }
 }
