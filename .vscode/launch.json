@@ -16,13 +16,7 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "com.gui.Main",
-            "projectName": "Project-PBO-Mini-Game_b2317610"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "com.gui.Main",
+            "projectName": "Project-PBO-Mini-Game_b2317610",
             "vmArgs": "--module-path /usr/share/openjfx/lib --add-modules javafx.controls,javafx.fxml"
         }
     ]

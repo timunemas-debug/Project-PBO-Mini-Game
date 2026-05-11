@@ -9,7 +9,6 @@ import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 public class DisplayMenu {
     private Scanner input = new Scanner(System.in);
     
-    private Inventory inventory = new Inventory();
     private ChooseCharacter choose = new ChooseCharacter();
     private Character selectedCharacter;
     Goblin goblin = new Goblin("Goblin", 20, 10, false);
@@ -52,7 +51,7 @@ public class DisplayMenu {
                 pertempuran.startPertempuran();
             }
             else if(menu == 2){
-                inventory.inventoryPlayer();
+                selectedCharacter.getInventoryPlayer().inventoryPlayer();
             }
             else if(menu == 3){
                 if(selectedCharacter != null){

@@ -1,10 +1,8 @@
 package com.gui.model.CharacterMiniGame;
 
-import com.gui.service.Reward;
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
-import com.gui.model.CharacterMiniGame.Character.GetChest;
 import com.gui.model.CharacterMiniGame.Character.Heal;
-public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
+public class Kaelion extends Character implements Heal, DisplayPlayer{
     private double coin, maxHp;
     private int level;
     public Kaelion(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
@@ -66,13 +64,6 @@ public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
         }else{
             System.out.println(eliminasiTarget.getUsername() + "Masih hidup");
         }
-    }
-
-    @Override
-    public void getChest(){
-        System.out.println("Selamat anda mendapatkan Chest!");
-        Reward reward = new Reward();
-        reward.getRandomItem();
     }
 
     @Override
