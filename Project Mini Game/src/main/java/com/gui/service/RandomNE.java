@@ -1,6 +1,7 @@
 package com.gui.service;
 
 import com.gui.model.CharacterMiniGame.Character;
+import com.gui.model.CharacterMiniGame.Character.GetChest;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -52,7 +53,7 @@ public class RandomNE {
                     pertempuranBos.startPertempuran();
                     if(miniBos.getHp() <= 0){
                         npc.hadiah();
-                        player.getChest();
+                        ((GetChest)player).getChestPlayer();
                     }
                 }
             }

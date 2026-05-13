@@ -1,8 +1,6 @@
 package com.gui.model.CharacterMiniGame;
 
 import com.gui.service.Inventory;
-import com.gui.service.Reward;
-
 public abstract class Character {
     private String username;
     private double hp, attackPower;
@@ -16,7 +14,7 @@ public abstract class Character {
         this.attackPower = attackPower;
         this.alive = alive;
 
-        inventoryPlayer = new Inventory();
+        inventoryPlayer = new Inventory(this);
     }
 
     public String getUsername(){
@@ -62,18 +60,13 @@ public abstract class Character {
     public interface DisplayPlayer {
         void displayPlayer();
     }
+    
+    public interface GetChest {
+        void getChestPlayer();
+    }
 
     public abstract void attackCharacter(Character enemy);
 
     public abstract void eliminasiCharacter(Character eliminasiTarget);
-
-    public void getChest(){
-        System.out.println("Anda mendapatkan hadiah");
-        Reward reward = new Reward();
-        Item item = reward.getRandomItem();
-        inventoryPlayer.addItem(item);
-        System.out.println("Item berhasil masuk iventory");
-        item.getInfo();
-    }
 
 }

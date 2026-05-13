@@ -2,8 +2,10 @@ package com.gui.model.CharacterMiniGame;
 
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 import com.gui.model.CharacterMiniGame.Character.Heal;
+import com.gui.model.CharacterMiniGame.Character.GetChest;
+import com.gui.service.Reward;
 
-public class Lyra extends Character implements Heal, DisplayPlayer{
+public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
     private double coin, maxHp;
     private int level;
     public Lyra(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
@@ -64,6 +66,16 @@ public class Lyra extends Character implements Heal, DisplayPlayer{
         }else{
             System.out.println(eliminasiTarget.getUsername() + " Masih hidup ");
         }
+    }
+
+    @Override
+    public void getChestPlayer(){
+        System.out.println("Anda mendapatkan hadiah");
+        Reward reward = new Reward();
+        Item item = reward.getRandomItem();
+        inventoryPlayer.addItem(item);
+        System.out.println("Item berhasil masuk inventory");
+        item.getInfo();
     }
 
     @Override

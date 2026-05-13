@@ -2,8 +2,10 @@ package com.gui.model.CharacterMiniGame;
 
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 import com.gui.model.CharacterMiniGame.Character.Heal;
+import com.gui.model.CharacterMiniGame.Character.GetChest;
+import com.gui.service.Reward;
 
-public class Draven extends Character implements Heal, DisplayPlayer {
+public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     private double maxHp, coin;
     private int level;
     public Draven(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
@@ -67,11 +69,21 @@ public class Draven extends Character implements Heal, DisplayPlayer {
     }
 
     @Override
+    public void getChestPlayer(){
+        System.out.println("Anda mendapatkan hadiah");
+        Reward reward = new Reward();
+        Item item = reward.getRandomItem();
+        inventoryPlayer.addItem(item);
+        System.out.println("Item berhasil masuk inventory");
+        item.getInfo();
+    }
+
+    @Override
     public void displayPlayer(){
         System.out.println("------------------");
         System.out.println("Nama   :" + getUsername());
         System.out.println("Level  :" + getLevel());
-        System.out.println("Senjata: ");
+        System.out.println("Senjata: " + inventoryPlayer.useItemPlayer());
         System.out.println("Armor  : ");
         System.out.println("Skill  : ");
         System.out.println("Attack :" + getAttackPower());

@@ -2,7 +2,9 @@ package com.gui.model.CharacterMiniGame;
 
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 import com.gui.model.CharacterMiniGame.Character.Heal;
-public class Kaelion extends Character implements Heal, DisplayPlayer{
+import com.gui.model.CharacterMiniGame.Character.GetChest;
+import com.gui.service.Reward;
+public class Kaelion extends Character implements Heal, GetChest, DisplayPlayer{
     private double coin, maxHp;
     private int level;
     public Kaelion(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
@@ -41,6 +43,16 @@ public class Kaelion extends Character implements Heal, DisplayPlayer{
             setHp(getHp() + 10);
             System.out.println(getUsername() + " Menambah Darah ");
         }
+    }
+
+    @Override
+    public void getChestPlayer(){
+        System.out.println("Anda mendapatkan hadiah");
+        Reward reward = new Reward();
+        Item item = reward.getRandomItem();
+        inventoryPlayer.addItem(item);
+        System.out.println("Item berhasil masuk inventory");
+        item.getInfo();
     }
 
     @Override
