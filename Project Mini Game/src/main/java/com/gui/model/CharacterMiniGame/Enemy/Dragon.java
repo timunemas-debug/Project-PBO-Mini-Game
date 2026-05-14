@@ -19,6 +19,7 @@ public class Dragon extends Character implements DisplayPlayer{
             System.out.println(enemy.getUsername() + " telah kalah");
             Reward rewardPool = new Reward();
             rewardPool.getRandomItem();
+            
         }
     }
 

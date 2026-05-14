@@ -5,6 +5,7 @@ public abstract class Character {
     private String username;
     private double hp, attackPower;
     private boolean alive;
+    private Item equippedItem;
 
     protected Inventory inventoryPlayer;
 
@@ -39,6 +40,14 @@ public abstract class Character {
 
     public void setHp(double hp) {
         this.hp = hp;
+    }
+
+    public Item getEquippedItem() {
+        return equippedItem;
+    }
+
+    public void setEquippedItem(Item equippedItem) {
+        this.equippedItem = equippedItem;
     }
 
     public boolean isAlive(){

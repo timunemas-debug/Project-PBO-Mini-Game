@@ -8,6 +8,7 @@ import com.gui.service.Reward;
 public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     private double maxHp, coin;
     private int level;
+    private String weapon,armor,skill;
     public Draven(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
         this.maxHp = maxHp;
@@ -78,14 +79,30 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
         item.getInfo();
     }
 
+    public void infoDisplayPlayer(){
+        if(getEquippedItem() != null){
+
+            if(getEquippedItem().getType().equalsIgnoreCase("Weapon")){
+                weapon =  getEquippedItem().getName();
+            }
+            else if(getEquippedItem().getType().equalsIgnoreCase("Armor")){
+                armor = getEquippedItem().getName();
+            }
+            else if(getEquippedItem().getType().equalsIgnoreCase("Skill")){
+                skill = getEquippedItem().getName();
+            }
+        }
+    }
+
     @Override
     public void displayPlayer(){
+        infoDisplayPlayer();
         System.out.println("------------------");
         System.out.println("Nama   :" + getUsername());
         System.out.println("Level  :" + getLevel());
-        System.out.println("Senjata: " + inventoryPlayer.useItemPlayer());
-        System.out.println("Armor  : ");
-        System.out.println("Skill  : ");
+        System.out.println("Senjata: " + weapon);
+        System.out.println("Armor  : " + armor);
+        System.out.println("Skill  : " + skill);
         System.out.println("Attack :" + getAttackPower());
         System.out.println("HP     :" + getHp());
         System.out.println("------------------");

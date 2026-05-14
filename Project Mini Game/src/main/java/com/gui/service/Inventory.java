@@ -48,7 +48,7 @@ public class Inventory{
         }
         Item item = items.get(index);
         System.out.println("Anda menggunakan : " + item.getName());
-        items.remove(index);
+        player.setEquippedItem(item);
         return item;
     }
 
