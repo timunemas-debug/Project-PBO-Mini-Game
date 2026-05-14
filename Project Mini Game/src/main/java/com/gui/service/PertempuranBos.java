@@ -37,6 +37,7 @@ public class PertempuranBos extends Pertempuran{
                     enemy.attackCharacter(getPlayer());
                 }else{
                     System.out.println(enemy.getUsername() + "Berhasil dikalahkan!");
+                    getPlayer().eliminasiCharacter(enemy);
                 }
             }
             else if(pilihaksi == 2){

@@ -6,23 +6,15 @@ import com.gui.model.CharacterMiniGame.Character.GetChest;
 import com.gui.service.Reward;
 
 public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
-    private double maxHp, coin;
+    private double maxHp;
     private int level;
     private String weapon,armor,skill;
-    public Draven(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
+    public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
         this.maxHp = maxHp;
-        this.coin = coin;
         this.level = level;
     }
 
-    public double getCoin() {
-        return coin;
-    }
-
-    public void setCoin(double coin) {
-        this.coin = coin;
-    }
 
     public int getLevel() {
         return level;
@@ -61,11 +53,9 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     public void eliminasiCharacter(Character eliminasiTarget){
         if(!eliminasiTarget.isAlive()){
             System.out.println(getUsername() + " Berhasil mengalahkan " + eliminasiTarget.getUsername());
-            setCoin(getCoin() + 5);
             setLevel(getLevel() + 1);
-            System.out.println("Anda mendapatkan coin sebesar 5 Coin");
         }else{
-            System.out.println(eliminasiTarget.getUsername() + "Masih hidup");
+            System.out.println(eliminasiTarget.getUsername() + " Masih hidup ");
         }
     }
 
