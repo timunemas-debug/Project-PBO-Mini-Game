@@ -3,12 +3,14 @@ package com.gui.model.CharacterMiniGame;
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 import com.gui.model.CharacterMiniGame.Character.Heal;
 import com.gui.model.CharacterMiniGame.Character.GetChest;
+
 import com.gui.service.Reward;
 
 public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     private double maxHp;
     private int level;
     private String weapon,armor,skill;
+    private Item item;
     public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
         this.maxHp = maxHp;
@@ -74,12 +76,16 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
 
             if(getEquippedItem().getType().equalsIgnoreCase("Weapon")){
                 weapon =  getEquippedItem().getName();
+                setAttackPower(getAttackPower() + item.getPlusPower());
+
             }
             else if(getEquippedItem().getType().equalsIgnoreCase("Armor")){
                 armor = getEquippedItem().getName();
+                setHp(getHp() + item.getPlusPower());
             }
             else if(getEquippedItem().getType().equalsIgnoreCase("Skill")){
                 skill = getEquippedItem().getName();
+                setAttackPower(getAttackPower() + item.getPlusPower());
             }
         }
     }

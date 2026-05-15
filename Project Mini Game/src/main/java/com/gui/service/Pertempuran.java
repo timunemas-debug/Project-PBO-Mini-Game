@@ -34,23 +34,31 @@ public class Pertempuran {
             System.out.println("5. Keluar");
             System.out.println("------------------------------");
             System.out.print("Pilih aksi : ");
-            int pilihAksi = input.nextInt();
-            input.nextLine();
 
-            if(pilihAksi == 1){
-                encounter.randomEncounter();
-            }
-            else if(pilihAksi == 2){
-                ((Heal) player).heal();
-            }
-            else if(pilihAksi == 3){
-                player.getInventoryPlayer().useItemPlayer();
-            }
-            else if(pilihAksi == 4){
-                ((DisplayPlayer) player).displayPlayer();
-            }
-            else if(pilihAksi == 5){
-                break;
+            try {
+                int pilihAksi = input.nextInt();
+                input.nextLine();
+                switch (pilihAksi) {
+                    case 1 :
+                        encounter.randomEncounter();
+                        break;
+                    case 2 :
+                        ((Heal) player).heal();
+                        break;
+                    case 3 :
+                        player.getInventoryPlayer().useItemPlayer();
+                        break;
+                    case 4 :
+                        ((DisplayPlayer) player).displayPlayer();
+                        break;
+                    case 5 :
+                        return;
+                    default:
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Input harus berupa angka!");
+                input.nextLine();
             }
         }
         if(player.getHp() <= 10){
@@ -64,5 +72,4 @@ public class Pertempuran {
             }
         }
     }
-
 }

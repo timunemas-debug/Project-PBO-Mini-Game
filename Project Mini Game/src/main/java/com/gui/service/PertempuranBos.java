@@ -28,30 +28,37 @@ public class PertempuranBos extends Pertempuran{
             System.out.println("4. Keluar");
             System.out.println("------------------------------");
             System.out.print("Pilih aksi : ");
-            int pilihaksi = input.nextInt();
-            input.nextLine();
-
-            if(pilihaksi == 1){
-                getPlayer().attackCharacter(enemy);
-                if(enemy.getHp() > 0){
-                    enemy.attackCharacter(getPlayer());
-                }else{
-                    System.out.println(enemy.getUsername() + "Berhasil dikalahkan!");
-                    getPlayer().eliminasiCharacter(enemy);
+            
+            try {
+                int pilihaksi = input.nextInt();
+                input.nextLine();
+                switch(pilihaksi){
+                    case 1 :
+                        getPlayer().attackCharacter(enemy);
+                        if(enemy.getHp() > 0){
+                        enemy.attackCharacter(getPlayer());
+                        }else{
+                            System.out.println(enemy.getUsername() + "Berhasil dikalahkan!");
+                            getPlayer().eliminasiCharacter(enemy);
+                        }
+                        break;
+                    case 2 :
+                        ((Heal) getPlayer()).heal();
+                        break;
+                    case 3 :
+                       ((DisplayPlayer)getPlayer()).displayPlayer();
+                       break;
+                    case 4 :
+                        System.out.println("Keluar..");
+                        return;
+                    default :
+                        System.out.println("Pilihan anda tidak valid");
                 }
+            } catch (Exception e) {
+                System.out.println("Input harus berupa angka");
+                input.nextLine();
             }
-            else if(pilihaksi == 2){
-                ((Heal) getPlayer()).heal();
-            }
-            else if(pilihaksi == 3){
-                ((DisplayPlayer)getPlayer()).displayPlayer();
-            }
-            else if(pilihaksi == 4){
-                System.out.println("Keluar..");
-                break;
-            }
-        }
-        if(getPlayer().getHp() <= 0){
+        if(getPlayer().getHp() <= 10){
             System.out.println("Kamu butuh darah");
             System.out.println("Apakah kamu ingin menambah darah? (Y/N) : ");
             String menambahDarah = input.nextLine();
@@ -60,4 +67,5 @@ public class PertempuranBos extends Pertempuran{
             }
         }
     }
+  }
 }

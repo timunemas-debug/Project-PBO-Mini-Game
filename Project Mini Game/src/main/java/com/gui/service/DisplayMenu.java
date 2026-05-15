@@ -48,32 +48,34 @@ public class DisplayMenu {
             try {
                 int menu = input.nextInt();
                 input.nextLine();
-    
-                if(menu == 1){
-                    System.out.println("Memasuki permainan....");
-                    choose.chooseCharacter();
-                    selectedCharacter = choose.getSelectCharacter();
-                    Pertempuran pertempuran = new Pertempuran(selectedCharacter);
-                    pertempuran.startPertempuran();
-                }
-                else if(menu == 2){
-                    if(selectedCharacter != null){
-                        selectedCharacter.getInventoryPlayer().inventoryPlayer();
-                    }else{
-                        System.out.println("Belum memilih karakter!");
+                switch (menu) {
+                    case 1 :
+                        System.out.println("Memasuki permainan....");
+                        choose.chooseCharacter();
+                        selectedCharacter = choose.getSelectCharacter();
+                        Pertempuran pertempuran = new Pertempuran(selectedCharacter);
+                        pertempuran.startPertempuran();
+                        break;
+                    case 2 :
+                        if(selectedCharacter != null){
+                            selectedCharacter.getInventoryPlayer().inventoryPlayer();
+                        }else{
+                            System.out.println("Belum memilih karakter!");
+                        }
+                        break;
+                    case 3 :
+                        if(selectedCharacter != null){
+                            ((DisplayPlayer) selectedCharacter).displayPlayer();
+                        }else{
+                            System.out.println("Belum ada karakter yang dipilih");
+                        }
+                        break;
+                    case 4 :
+                        System.out.println("Keluar dari game");
+                        return;
+                    default:
+                        break;
                     }
-                }
-                else if(menu == 3){
-                    if(selectedCharacter != null){
-                        ((DisplayPlayer) selectedCharacter).displayPlayer();
-                    }else{
-                        System.out.println("Belum ada karakter yang dipilih");
-                    }
-                    }
-                else if(menu == 4){
-                    System.out.println("Keluar dari game");
-                    break;
-                }
             } catch (Exception e) {
                 System.out.println("Input harus angka!");
                 input.nextLine();
