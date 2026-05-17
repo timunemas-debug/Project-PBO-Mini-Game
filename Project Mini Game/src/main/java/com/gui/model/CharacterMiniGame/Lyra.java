@@ -8,6 +8,8 @@ import com.gui.service.Reward;
 public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
     private double coin, maxHp;
     private int level;
+    private String weapon,armor,skill;
+    
     public Lyra(String username, double hp, double attackPower, double coin, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
         this.maxHp = maxHp;
@@ -33,6 +35,31 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
 
     public double getMaxHp() {
         return maxHp;
+    }
+    
+    @Override
+    public void setEquippedItem(Item equippedItem) {
+        if(getEquippedItem() != null && getEquippedItem().getName().equalsIgnoreCase(equippedItem.getName())){
+            System.out.println("Item sudah digunakan");
+            return;
+        }
+        super.setEquippedItem(equippedItem);
+        if(equippedItem.getType().equalsIgnoreCase("Weapon")){
+            weapon = equippedItem.getName();
+            setAttackPower(
+                getAttackPower() + getEquippedItem().getPlusPower()
+            );
+        }else if(equippedItem.getType().equalsIgnoreCase("Armor")){
+            armor = equippedItem.getName();
+            setHp(
+                getHp() + getEquippedItem().getPlusPower()
+            );
+        }else if(equippedItem.getType().equalsIgnoreCase("Skill")){
+            skill = equippedItem.getName();
+            setAttackPower(
+                getAttackPower() + getEquippedItem().getPlusPower()
+            );
+        }
     }
 
     @Override
@@ -83,9 +110,9 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
         System.out.println("------------------");
         System.out.println("Nama   :" + getUsername());
         System.out.println("Level  :" + getLevel());
-        System.out.println("Senjata: ");
-        System.out.println("Armor  : ");
-        System.out.println("Skill  : ");
+        System.out.println("Senjata: " + weapon);
+        System.out.println("Armor  : " + armor);
+        System.out.println("Skill  : " + skill);
         System.out.println("Attack :" + getAttackPower());
         System.out.println("HP     :" + getHp());
         System.out.println("------------------");

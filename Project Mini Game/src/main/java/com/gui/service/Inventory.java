@@ -42,7 +42,6 @@ public class Inventory{
 
     public Item useItem(int choise){
         int index = choise - 1;
-        input.nextLine();
         if(index < 0 || index >= items.size()){
             System.out.println("item tidak ditemukan");
             return null;
@@ -50,7 +49,6 @@ public class Inventory{
         Item item = items.get(index);
         System.out.println("Anda menggunakan : " + item.getName());
         player.setEquippedItem(item);
-        player.setAttackPower(getPlayer().getAttackPower() + item.getPlusPower());
         return item;
     }
 

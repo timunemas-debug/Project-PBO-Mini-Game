@@ -54,7 +54,7 @@ public class Pertempuran {
                     case 5 :
                         return;
                     default:
-                        break;
+                        System.out.println("Pilihan anda tidak valid");
                 }
             } catch (Exception e) {
                 System.out.println("Input harus berupa angka!");

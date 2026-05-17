@@ -10,7 +10,6 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     private double maxHp;
     private int level;
     private String weapon,armor,skill;
-    private Item item;
     public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
         this.maxHp = maxHp;
@@ -28,6 +27,31 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
 
     public double getMaxHp() {
         return maxHp;
+    }
+
+    @Override
+    public void setEquippedItem(Item equippedItem) {
+        if(getEquippedItem() != null && getEquippedItem().getName().equalsIgnoreCase(equippedItem.getName())){
+            System.out.println("Item sudah digunakan");
+            return;
+        }
+        super.setEquippedItem(equippedItem);
+        if(equippedItem.getType().equalsIgnoreCase("Weapon")){
+            weapon = equippedItem.getName();
+            setAttackPower(
+                getAttackPower() + getEquippedItem().getPlusPower()
+            );
+        }else if(equippedItem.getType().equalsIgnoreCase("Armor")){
+            armor = equippedItem.getName();
+            setHp(
+                getHp() + getEquippedItem().getPlusPower()
+            );
+        }else if(equippedItem.getType().equalsIgnoreCase("Skill")){
+            skill = equippedItem.getName();
+            setAttackPower(
+                getAttackPower() + getEquippedItem().getPlusPower()
+            );
+        }
     }
 
     @Override
@@ -71,28 +95,9 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
         item.getInfo();
     }
 
-    public void infoDisplayPlayer(){
-        if(getEquippedItem() != null){
-
-            if(getEquippedItem().getType().equalsIgnoreCase("Weapon")){
-                weapon =  getEquippedItem().getName();
-                setAttackPower(getAttackPower() + item.getPlusPower());
-
-            }
-            else if(getEquippedItem().getType().equalsIgnoreCase("Armor")){
-                armor = getEquippedItem().getName();
-                setHp(getHp() + item.getPlusPower());
-            }
-            else if(getEquippedItem().getType().equalsIgnoreCase("Skill")){
-                skill = getEquippedItem().getName();
-                setAttackPower(getAttackPower() + item.getPlusPower());
-            }
-        }
-    }
 
     @Override
     public void displayPlayer(){
-        infoDisplayPlayer();
         System.out.println("------------------");
         System.out.println("Nama   :" + getUsername());
         System.out.println("Level  :" + getLevel());
