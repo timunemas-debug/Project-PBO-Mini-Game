@@ -1,0 +1,17 @@
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/Main.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Character.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Draven.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Enemy/Dragon.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Enemy/Goblin.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Item.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Kaelion.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Lyra.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/NPC/Npc.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/ChooseCharacter.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/DisplayMenu.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/Inventory.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/Main.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/Pertempuran.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/PertempuranBos.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/RandomNE.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/Reward.java
