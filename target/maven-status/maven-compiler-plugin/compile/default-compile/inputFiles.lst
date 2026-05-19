@@ -1,4 +1,6 @@
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/Main.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/GameController.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/MainMenuController.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Character.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Draven.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Enemy/Dragon.java
