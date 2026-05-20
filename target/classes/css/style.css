@@ -1,10 +1,9 @@
 /* style.css */
 .root .btn-start,
 .btn-start {
-    -fx-background-color: #c0392b;
+    -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-font-size: 18px;
-    -fx-font-weight: bold;
     -fx-font-family: "Arial";
     -fx-padding: 12 40 12 40;
     -fx-border-color: white;
@@ -17,7 +16,7 @@
 }
 
 .btn-start:hover {
-    -fx-background-color: white;
+    -fx-background-color: rgba(255,255,255,0.2);
     -fx-text-fill: #c0392b;
     -fx-border-color: #c0392b;
 }

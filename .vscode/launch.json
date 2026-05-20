@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "com.gui.service.Main",
+            "projectName": "java-app"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "com.gui.Main",
             "projectName": "java-app"
         },
