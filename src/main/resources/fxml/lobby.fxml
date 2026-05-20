@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox alignment="CENTER"
+      prefWidth = "1280"
+      prefHeight = "720"
+      spacing="20"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gui.controller.GameController"
+      style = "-fx-background-image: url('/Images/BackgroundMainMenu.jpg');
+               -fx-background-size: cover;
+               -fx-background-position: center;">
+      
+    <Label text="GAME DIMULAI"/>
+
+</VBox>

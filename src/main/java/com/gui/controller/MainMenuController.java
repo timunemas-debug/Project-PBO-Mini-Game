@@ -53,7 +53,7 @@ public class MainMenuController {
     private void startGame(ActionEvent event) throws Exception {
 
         Parent newRoot = FXMLLoader.load(
-                getClass().getResource("/fxml/game.fxml")
+                getClass().getResource("/fxml/lobby.fxml")
         );
 
         Scene scene = new Scene(newRoot, 1280,720);
