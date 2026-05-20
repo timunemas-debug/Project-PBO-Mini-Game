@@ -8,7 +8,7 @@
       spacing="20"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.gui.controller.GameController"
-      style = "-fx-background-image: url(/Images/BackgroundMainMenu.jpg);
+      style = "-fx-background-image: url('/Images/BackgroundMainMenu.jpg');
                -fx-background-size: cover;
                -fx-background-position: center;">
       
