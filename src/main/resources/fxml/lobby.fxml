@@ -1,17 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER"
-      prefWidth = "1280"
-      prefHeight = "720"
-      spacing="20"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.gui.controller.GameController"
-      style = "-fx-background-image: url('/Images/BackgroundMainMenu.jpg');
-               -fx-background-size: cover;
-               -fx-background-position: center;">
-      
-    <Label text="GAME DIMULAI"/>
+<StackPane fx:id="rootlobby"
+           xmlns:fx="https://javafx.com/fxml"
+           fx:controller="com.gui.controller.LobbyController"
+           stylesheets="@/css/style.css">
 
-</VBox>
+    <ImageView fx:id="bgimagelobby"
+               preserveRatio="false"
+               smooth="true"/>
+
+    <VBox alignment="CENTER_LEFT"
+          spacing="25">
+
+          <padding>
+                <Insets left="50" bottom="120"/>
+          </padding>
+
+         <Button fx:id="btnPlayGame"
+                 text="PLAY GAME"
+                 prefWidth="250"
+                 prefHeight="50"
+                 styleClass="btn-playgame"
+                 onAction="#handlePlayGame"/>
+
+        <Button fx:id="btnProfile"
+                text="PROFILE"
+                prefWidth="250"
+                prefHeight="50"
+                styleClass="btn-profile"
+                onAction="#handleProfile"/>
+
+        <Button fx:id="btnInventory"
+                text="INVENTORY"
+                prefWidth="250"
+                prefHeight="50"
+                styleClass="btn-inventory"
+                onAction="#handleInventory"/>
+
+        <Button fx:id="btnExit"
+                text="EXIT"
+                prefWidth="250"
+                prefHeight="50"
+                styleClass="btn-exitlobby"
+                onAction="#exitGame"/>
+     </VBox>
+
+</StackPane>

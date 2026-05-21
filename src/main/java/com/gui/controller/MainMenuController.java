@@ -26,7 +26,7 @@ public class MainMenuController {
     @FXML
     public void initialize(){
         System.out.println("INITIALIZE DIPANGGIL");
-        var stream = getClass().getResourceAsStream("/Images/BackgroundDisplay.jpg");
+        var stream = getClass().getResourceAsStream("/Images/bgdisplayfirst.png");
 
         if(stream == null){
             System.out.println("Gambar tidak ditemukan");
@@ -53,7 +53,7 @@ public class MainMenuController {
     private void startGame(ActionEvent event) throws Exception {
 
         Parent newRoot = FXMLLoader.load(
-                getClass().getResource("/fxml/lobby.fxml")
+                getClass().getResource("/fxml/choose-character.fxml")
         );
 
         Scene scene = new Scene(newRoot, 1280,720);

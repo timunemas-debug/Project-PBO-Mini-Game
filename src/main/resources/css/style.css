@@ -41,6 +41,79 @@
     -fx-text-alignment: center;
 }
 
+
+.btn-playgame{
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-family: "Press Start 2P";
+    -fx-padding: 12 40 12 40;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+.btn-playgame:hover{
+    -fx-background-color: #cc3333;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-profile{
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-family: "Press Start 2P";
+    -fx-padding: 12 40 12 40;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+.btn-profile:hover{
+    -fx-background-color: #cc3333;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-inventory{
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-family: "Press Start 2P";
+    -fx-padding: 12 40 12 40;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+.btn-inventory:hover{
+    -fx-background-color: #cc3333;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-exitlobby {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-family: "Press Start 2P";
+    -fx-padding: 12 40 12 40;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+.btn-exitlobby:hover{
+    -fx-background-color: #cc3333;
+    -fx-text-fill: #ffffff;
+}
+.btn-memilihdraven{
+
+}
+.btn-memilihlyra{
+
+}
+.btn-memilihkaelion{
+    
+}
 .btn-exit:hover {
     -fx-background-color: rgba(255,255,255,0.2);
 }
