@@ -1,11 +1,14 @@
 package com.gui.controller;
 
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 public class MemilihCharacterController extends BaseController{
     
@@ -22,6 +25,10 @@ public class MemilihCharacterController extends BaseController{
 
     @FXML
     public void initialize(){
+        btnMemilihDraven.setCursor(Cursor.HAND);
+        btnMemilihLyra.setCursor(Cursor.HAND);
+        btnMemilihKaelion.setCursor(Cursor.HAND);
+
         System.out.println("INITIALIZE CHOOSE CHARACTER");
         var streamchoose = getClass().getResourceAsStream("/Images/bgdisplaychoose.png");
 
@@ -36,6 +43,10 @@ public class MemilihCharacterController extends BaseController{
         bgImageMemilihCharacter.fitWidthProperty().bind(rootmemilihcharacter.widthProperty());
         bgImageMemilihCharacter.fitHeightProperty().bind(rootmemilihcharacter.heightProperty());
 
+        tambahEfekHoverMembesar(btnMemilihDraven);
+        tambahEfekHoverMembesar(btnMemilihLyra);
+        tambahEfekHoverMembesar(btnMemilihKaelion);
+
         System.out.println("Background berhasil di set");
 
         btnMemilihDraven.getStyleClass().clear();
@@ -48,6 +59,20 @@ public class MemilihCharacterController extends BaseController{
         btnMemilihLyra.getStyleClass().add("btnMemilihLyra");
 
     }
+    private void tambahEfekHoverMembesar(Button button) {
+    button.setOnMouseEntered(event -> {
+        ScaleTransition st = new ScaleTransition(Duration.millis(150), button);
+        st.setToX(1.1);
+        st.setToY(1.1);
+        st.play();
+    });
+    button.setOnMouseExited(event -> {
+        ScaleTransition st = new ScaleTransition(Duration.millis(150), button);
+        st.setToX(1.0);
+        st.setToY(1.0);
+        st.play();
+    });
+}
 
     @FXML
     private void handlePlayerDraven(ActionEvent event)throws Exception{

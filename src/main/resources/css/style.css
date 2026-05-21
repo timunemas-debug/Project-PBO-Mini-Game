@@ -41,7 +41,6 @@
     -fx-text-alignment: center;
 }
 
-
 .btn-playgame{
     -fx-background-color: transparent;
     -fx-text-fill: #ffffff;
@@ -105,15 +104,22 @@
     -fx-background-color: #cc3333;
     -fx-text-fill: #ffffff;
 }
-.btn-memilihdraven{
-
-}
-.btn-memilihlyra{
-
-}
+.btn-memilihdraven,
+.btn-memilihlyra,
 .btn-memilihkaelion{
-    
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-cursor: hand;
 }
+
+.btn-memilihdraven:hover,
+.btn-memilihlyra:hover,
+.btn-memilihkaelion:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, 0, 8);
+}
+
 .btn-exit:hover {
     -fx-background-color: rgba(255,255,255,0.2);
 }
