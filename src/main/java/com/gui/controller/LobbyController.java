@@ -30,12 +30,11 @@ public class LobbyController extends BaseController{
 
         Image bg = new Image(streamlobby);
         bgimagelobby.setImage(bg);
-        javafx.application.Platform.runLater(() -> {
-            bgimagelobby.fitWidthProperty().bind(rootlobby.widthProperty());
-            bgimagelobby.fitHeightProperty().bind(rootlobby.heightProperty());
-            System.out.println("background berhasil di set");
-        });
 
+        bgimagelobby.fitWidthProperty().bind(rootlobby.widthProperty());
+        bgimagelobby.fitHeightProperty().bind(rootlobby.heightProperty());
+
+        System.out.println("background berhasil di set");
     }
 
     @FXML

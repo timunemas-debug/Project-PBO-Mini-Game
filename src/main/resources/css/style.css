@@ -16,7 +16,7 @@
 }
 
 .btn-start:hover {
-    -fx-background-color: white;
+    -fx-background-color: rgba(255,255,255,0.2);
     -fx-text-fill: #c0392b;
     -fx-border-color: #c0392b;
 }
@@ -29,7 +29,7 @@
 .btn-exit {
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 18px;
     -fx-font-family: "Arial";
     -fx-padding: 8 30 8 30;
     -fx-border-color: white;
@@ -39,6 +39,10 @@
     -fx-cursor: hand;
     -fx-alignment: center;
     -fx-text-alignment: center;
+}
+
+.btn-exit:hover {
+    -fx-background-color: rgba(255,255,255,0.2);
 }
 
 .btn-playgame{
@@ -118,8 +122,4 @@
 .btn-memilihlyra:hover,
 .btn-memilihkaelion:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, 0, 8);
-}
-
-.btn-exit:hover {
-    -fx-background-color: rgba(255,255,255,0.2);
 }
