@@ -23,16 +23,13 @@ public class LobbyController extends BaseController{
         System.out.println("INITIALIZE LOBBY DI CALL");
         var streamlobby = getClass().getResourceAsStream("/Images/bgdisplaylobby.png");
 
-        if(streamlobby == null){
+        if(streamlobby != null){
+            bgimagelobby.setImage(new Image(streamlobby));
+            bgimagelobby.fitWidthProperty().bind(rootlobby.widthProperty());
+            bgimagelobby.fitHeightProperty().bind(rootlobby.heightProperty());
+        }else{
             System.out.println("Gambar lobby tidak ditemukan");
-            return;
         }
-
-        Image bg = new Image(streamlobby);
-        bgimagelobby.setImage(bg);
-
-        bgimagelobby.fitWidthProperty().bind(rootlobby.widthProperty());
-        bgimagelobby.fitHeightProperty().bind(rootlobby.heightProperty());
 
         System.out.println("background berhasil di set");
     }

@@ -1,1 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="rootpertempuran"
+           xmlns:fx="https://javafx.com/fxml"
+           fx:controller="com.gui.controller.GameController"
+           stylesheets="@/css/style.css">
+
+    <ImageView fx:id="bgimagepertempuran"
+               preserveRatio="false"
+               smooth="true"/>
+
+    <VBox alignment="CENTER_RIGHT"
+          spacing="25">
+          <padding>
+            <Insets left="30" bottom="50" top="50"/>
+          </padding>
+
+          <Button fx:id="btnJalan"
+                  text="JALAN"
+                  prefWidth="250"
+                  prefHeight="50"/>
+
+          <Button fx:id="btnHeal"
+                  text="HEAL"
+                  prefWidth="250"
+                  prefHeight="50"/>
+    </VBox>
+
+    <VBox alignment="CENTER_LEFT"
+          spacing="15">
+    <padding>
+        <Insets bottom="650"/>
+    </padding>
+        <Button fx:id="btnExit"
+                text="EXIT"
+                prefWidth="250"
+                prefHeight="50"
+                styleClass="btn-exit-pertempuran"
+                onAction="#exitGame"/>
+    </VBox>
+
+</StackPane>

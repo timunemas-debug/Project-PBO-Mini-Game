@@ -21,11 +21,11 @@
             <Insets bottom="600"/>
         </padding>
         <Button fx:id="btnExit"
-        text="EXIT"
-        styleClass="btn-exit-profile"
-        onAction="#exitGame"
-        prefWidth="250"
-        prefHeight="50"/>
+                text="EXIT"
+                styleClass="btn-exit-profile"
+                onAction="#exitGame"
+                prefWidth="250"
+                prefHeight="50"/>
     </VBox>
     
     <VBox alignment="CENTER_LEFT"
