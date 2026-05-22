@@ -1,1 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="rootprofile"
+           xmlns:fx="https://javafx.com/fxml"
+           fx:controller="com.gui.controller.ProfileController"
+           stylesheets="@/css/style.css">
+
+    <ImageView fx:id="bgImageProfile"
+               preserveRatio="false"
+               smooth="true"/>
+
+    <VBox alignment="CENTER_LEFT"
+          spacing="15">
+        <padding>
+            <Insets bottom="600"/>
+        </padding>
+        <Button fx:id="btnExit"
+        text="EXIT"
+        styleClass="btn-exit-profile"
+        onAction="#exitGame"
+        prefWidth="250"
+        prefHeight="50"/>
+    </VBox>
+    
+    <VBox alignment="CENTER_LEFT"
+          spacing="40"
+          mouseTransparent="true">
+    <padding>
+        <Insets top="5" bottom="100" left="340"/>
+    </padding>
+
+        <ImageView fx:id="imgCharacter"
+                   fitWidth="420"
+                   fitHeight="420"
+                   preserveRatio="true"/>
+    </VBox>
+
+ </StackPane>

@@ -19,7 +19,7 @@
           spacing="25">
 
           <padding>
-                <Insets left="50" bottom="120"/>
+                <Insets left="50" bottom="50" top="30"/>
           </padding>
 
          <Button fx:id="btnPlayGame"
@@ -28,20 +28,28 @@
                  prefHeight="50"
                  styleClass="btn-playgame"
                  onAction="#handlePlayGame"/>
-
+                 
         <Button fx:id="btnProfile"
-                text="PROFILE"
+                 text="PROFILE"
+                 prefWidth="250"
+                 prefHeight="50"
+                 styleClass="btn-profile"
+                 onAction="#handleProfile"/>
+
+        <Button fx:id="btnChooseCharacter"
+                text="CHARACTER"
                 prefWidth="250"
                 prefHeight="50"
-                styleClass="btn-profile"
-                onAction="#handleProfile"/>
-
+                styleClass="btn-choosecharacter"
+                onAction="#handleChooseCharacter"/>
+                 
         <Button fx:id="btnInventory"
                 text="INVENTORY"
                 prefWidth="250"
                 prefHeight="50"
                 styleClass="btn-inventory"
                 onAction="#handleInventory"/>
+        
 
         <Button fx:id="btnExit"
                 text="EXIT"

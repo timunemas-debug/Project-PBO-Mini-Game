@@ -53,6 +53,11 @@ public class LobbyController extends BaseController{
     }
 
     @FXML
+    private void handleChooseCharacter(ActionEvent event)throws Exception{
+        switchScene(event, "/fxml/choose-character.fxml");
+    }
+
+    @FXML
     private void exitGame(){
         System.exit(0);
     }

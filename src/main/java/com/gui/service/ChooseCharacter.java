@@ -11,7 +11,7 @@ public class ChooseCharacter {
     private Draven draven = new Draven("Draven", 85, 30, 0, false, 85);
     private Lyra lyra = new Lyra("Lyra", 90, 25, 0, 0, false, 90);
     private Kaelion kaelion = new Kaelion("Kaelion", 110, 20, 0, 0, false, 110);
-    private Character selectedCharacter;
+    private static Character selectedCharacter;
 
     public void chooseCharacter(){
         while (true) {
@@ -48,7 +48,11 @@ public class ChooseCharacter {
             }
         }
     }
-    public Character getSelectCharacter(){
+    public static Character getSelectCharacter(){
         return selectedCharacter;
-  }
+    }
+
+    public static void setSelectedCharacter(Character Character) {
+        selectedCharacter = Character;
+    }
 }

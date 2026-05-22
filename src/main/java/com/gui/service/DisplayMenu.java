@@ -52,7 +52,7 @@ public class DisplayMenu {
                     case 1 :
                         System.out.println("Memasuki permainan....");
                         choose.chooseCharacter();
-                        selectedCharacter = choose.getSelectCharacter();
+                        selectedCharacter = ChooseCharacter.getSelectCharacter();
                         Pertempuran pertempuran = new Pertempuran(selectedCharacter);
                         pertempuran.startPertempuran();
                         break;
