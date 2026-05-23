@@ -13,30 +13,36 @@
 
     <ImageView fx:id="bgimagepertempuran"
                preserveRatio="false"
-               smooth="true"/>
+               smooth="true"
+               mouseTransparent="true"/>
 
-    <VBox alignment="CENTER_RIGHT"
-          spacing="25">
+    <VBox alignment="CENTER"
+          spacing="25"
+          StackPane.alignment="CENTER_RIGHT">
+          
           <padding>
-            <Insets left="30" bottom="50" top="50"/>
+            <Insets left="30" right="50" bottom="50" top="50"/>
           </padding>
 
-          <Button fx:id="btnJalan"
-                  text="JALAN"
-                  prefWidth="250"
-                  prefHeight="50"/>
+        </VBox>
+        
+        <VBox alignment="CENTER_LEFT"
+        spacing="15"
+        StackPane.alignment="TOP_LEFT">
+        <padding>
+            <Insets bottom="650"/>
+        </padding>
+        <Button fx:id="btnJalan"
+                text="JALAN"
+                prefWidth="250"
+                prefHeight="50"
+                styleClass="btn-jalan-pertempuran"/>
 
-          <Button fx:id="btnHeal"
-                  text="HEAL"
-                  prefWidth="250"
-                  prefHeight="50"/>
-    </VBox>
-
-    <VBox alignment="CENTER_LEFT"
-          spacing="15">
-    <padding>
-        <Insets bottom="650"/>
-    </padding>
+        <Button fx:id="btnHeal"
+                text="HEAL"
+                prefWidth="250"
+                prefHeight="50"
+                styleClass="btn-heal-pertempuran"/>
         <Button fx:id="btnExit"
                 text="EXIT"
                 prefWidth="250"
