@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 
 <StackPane fx:id="rootprofile"
            xmlns:fx="https://javafx.com/fxml"
@@ -39,6 +40,20 @@
                    fitWidth="420"
                    fitHeight="420"
                    preserveRatio="true"/>
+    </VBox>
+
+    <VBox fx:id="statsBox"
+          alignment="CENTER"
+          spacing="10"
+          mouseTransparent="true">
+        <padding>
+            <Insets top="100" left="40"/>
+        </padding>
+
+        <Label fx:id="lblLevel" text="Level : " styleClass="level-stats"/>
+        <Label fx:id="lblWeapon" text="Weapon : " styleClass="weapon-stats"/>
+        <Label fx:id="lblArmor" text="Armor : " styleClass="armor-stats"/>
+        <Label fx:id="lblMagic" text="Magic : " styleClass="magic-stats"/>
     </VBox>
 
  </StackPane>

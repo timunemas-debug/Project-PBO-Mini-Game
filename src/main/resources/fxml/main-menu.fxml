@@ -23,7 +23,7 @@
         </padding>
 
         <Button fx:id="btnStart"
-                text="START GAME"
+                text="START"
                 styleClass="btn-start"
                 onAction="#startGame"
                 prefWidth="250"

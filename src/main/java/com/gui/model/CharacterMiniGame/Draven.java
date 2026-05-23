@@ -28,6 +28,15 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     public double getMaxHp() {
         return maxHp;
     }
+    public String getArmor() {
+        return armor;
+    }
+    public String getSkill() {
+        return skill;
+    }
+    public String getWeapon() {
+        return weapon;
+    }
 
     @Override
     public void setEquippedItem(Item equippedItem) {

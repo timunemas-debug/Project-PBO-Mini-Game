@@ -1,0 +1,24 @@
+.level-stats {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Press Start 2P";
+    -fx-text-fill: white;
+}
+.weapon-stats{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Press Start 2P";
+    -fx-text-fill: white;
+}
+.armor-stats{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Press Start 2P";
+    -fx-text-fill: white;
+}
+.magic-stats{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Press Start 2P";
+    -fx-text-fill: white;
+}
