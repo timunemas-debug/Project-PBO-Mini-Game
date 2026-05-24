@@ -3,6 +3,7 @@ package com.gui.service;
 import com.gui.model.CharacterMiniGame.Character;
 
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import com.gui.model.CharacterMiniGame.Character.Heal;
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
@@ -10,15 +11,35 @@ import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 public class Pertempuran {
     private Character player;
     private RandomNE encounter;
+    private Consumer<String> onLog;
+    private Consumer<String> onCounter;
     private Scanner input = new Scanner(System.in);
 
     public Pertempuran(Character player){
+        this(player, System.out::println, type -> {});
+    }
+
+    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onCounter){
         this.player = player;
-        encounter = new RandomNE(player);
+        this.onLog = onLog;
+        this.onCounter = onCounter;
+        encounter = new RandomNE(player, onLog, onCounter);
     }
 
     public Character getPlayer() {
         return player;
+    }
+
+    public void aksiJalan(){
+        encounter.randomEncounter();
+    }
+
+    public void aksiHeal(){
+        ((Heal) player).heal();
+    }
+
+    public Character getMusuhAktif(){
+        return encounter.getMusuhAktif();
     }
 
     public void startPertempuran(){
@@ -57,18 +78,18 @@ public class Pertempuran {
                         System.out.println("Pilihan anda tidak valid");
                 }
             } catch (Exception e) {
-                System.out.println("Input harus berupa angka!");
+                onLog.accept("Input harus berupa angka!");
                 input.nextLine();
             }
         }
         if(player.getHp() <= 10){
-            System.out.println("Kamu butuh darah!!!");
-            System.out.print("Apakah kamu ingin menambah darah? (Y/N) : ");
+            onLog.accept("Kamu butuh darah!!!");
+            onLog.accept("Apakah kamu ingin menambah darah? (Y/N) : ");
             String menambahDarah = input.nextLine();
             if(menambahDarah.equalsIgnoreCase("Y")){
                 ((Heal) player).heal();
             }else{
-                System.out.println("Kamu Kalah!");
+                onLog.accept("Kamu Kalah!");
             }
         }
     }

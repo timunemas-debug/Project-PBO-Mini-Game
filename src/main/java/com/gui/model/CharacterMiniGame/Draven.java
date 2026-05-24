@@ -1,14 +1,18 @@
 package com.gui.model.CharacterMiniGame;
 
+import java.util.function.Consumer;
+
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 import com.gui.model.CharacterMiniGame.Character.Heal;
 import com.gui.model.CharacterMiniGame.Character.GetChest;
+
 
 import com.gui.service.Reward;
 
 public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     private double maxHp;
     private int level;
+    private Consumer<String> onLog;
     private String weapon,armor,skill;
     public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
@@ -16,6 +20,16 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
         this.level = level;
     }
 
+    public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp, Consumer<String> onLog){
+        super(username, hp, attackPower, alive);
+        this.maxHp = maxHp;
+        this.level = level;
+        this.onLog = onLog;
+    }
+
+    public void setOnLog(Consumer<String> onLog) {
+        this.onLog = onLog;
+    }
 
     public int getLevel() {
         return level;
@@ -41,7 +55,7 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     @Override
     public void setEquippedItem(Item equippedItem) {
         if(getEquippedItem() != null && getEquippedItem().getName().equalsIgnoreCase(equippedItem.getName())){
-            System.out.println("Item sudah digunakan");
+            onLog.accept("Item sudah digunakan");
             return;
         }
         super.setEquippedItem(equippedItem);
@@ -66,41 +80,41 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     @Override
     public void heal(){
         if(getHp() >= getMaxHp()){
-            System.out.println("Darah sudah tidak bisa ditambah!");
+            onLog.accept("Darah sudah tidak bisa ditambah!");
         }else{
             setHp(Math.min(getHp() + 10, getMaxHp()));
-            System.out.println(getUsername() + " Menambah Darah ");
+            onLog.accept(getUsername() + " Menambah Darah ");
         }
     }
 
     @Override
     public void attackCharacter(Character enemy){
-        System.out.println(getUsername() + " Menyerang " + enemy.getUsername());
+        onLog.accept(getUsername() + " Menyerang " + enemy.getUsername());
         enemy.setHp(enemy.getHp() - getAttackPower());
         if(enemy.getHp() <= 0){
             enemy.setHp(0);
             enemy.setAlive(false);
-            System.out.println(enemy.getUsername() + " telah kalah ");
+            onLog.accept(enemy.getUsername() + " telah kalah ");
         }
     }
     
     @Override
     public void eliminasiCharacter(Character eliminasiTarget){
         if(!eliminasiTarget.isAlive()){
-            System.out.println(getUsername() + " Berhasil mengalahkan " + eliminasiTarget.getUsername());
+           onLog.accept(getUsername() + " Berhasil mengalahkan " + eliminasiTarget.getUsername());
             setLevel(getLevel() + 1);
         }else{
-            System.out.println(eliminasiTarget.getUsername() + " Masih hidup ");
+            onLog.accept(eliminasiTarget.getUsername() + " Masih hidup ");
         }
     }
 
     @Override
     public void getChestPlayer(){
-        System.out.println("Anda mendapatkan hadiah");
+        onLog.accept("Anda mendapatkan hadiah");
         Reward reward = new Reward();
         Item item = reward.getRandomItem();
         inventoryPlayer.addItem(item);
-        System.out.println("Item berhasil masuk inventory");
+        onLog.accept("Item berhasil masuk inventory");
         item.getInfo();
     }
 

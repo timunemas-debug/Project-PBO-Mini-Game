@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 
 <StackPane fx:id="rootpertempuran"
@@ -44,15 +45,30 @@
                                text="JALAN"
                                prefWidth="250"
                                prefHeight="50"
-                               styleClass="btn-jalan-pertempuran"/>
+                               styleClass="btn-jalan-pertempuran"
+                               onAction="#onJalan"/>
                        <Button fx:id="btnHeal"
                                text="HEAL"
                                prefWidth="250"
                                prefHeight="50"
-                               styleClass="btn-heal-pertempuran"/>
+                               styleClass="btn-heal-pertempuran"
+                               onAction="#nambahDarah"/>
+                        <Button fx:id="btnAttack"
+                                text="ATTACK"
+                                prefWidth="250"
+                                prefHeight="50"
+                                styleClass="btn-attack-pertempuran"
+                                onAction="#attackEnemy"/>
                
                        </HBox>
                 </center>
+
+                <bottom>
+                <TextArea fx:id="logArea"
+                        prefHeight="150"
+                        editable="false"
+                        wrapText="true"/>
+                </bottom>
         </BorderPane>
 
 </StackPane>

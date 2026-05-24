@@ -36,6 +36,18 @@ public class Lyra extends Character implements Heal, GetChest, DisplayPlayer{
     public double getMaxHp() {
         return maxHp;
     }
+
+    public String getWeapon() {
+        return weapon;
+    }
+
+    public String getArmor() {
+        return armor;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
     
     @Override
     public void setEquippedItem(Item equippedItem) {

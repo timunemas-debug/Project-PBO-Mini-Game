@@ -1,11 +1,10 @@
 package com.gui.service;
 
 import com.gui.model.CharacterMiniGame.Character;
-import com.gui.model.CharacterMiniGame.Character.GetChest;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
+import java.util.function.Consumer;
 
 import com.gui.model.CharacterMiniGame.Enemy.Dragon;
 import com.gui.model.CharacterMiniGame.Enemy.Goblin;
@@ -17,59 +16,53 @@ public class RandomNE {
     private ArrayList<Dragon> miniboslist;
     private Random random;
     private Character player;
-    Scanner input = new Scanner(System.in);
-
-    public RandomNE(Character player){
+    private Consumer<String> onLog;
+    private Consumer<String> onCounter;
+    private Goblin musuhAktif;
+    
+    public RandomNE(Character player, Consumer<String> onLog, Consumer<String> onCounter){
         npclist = new ArrayList<>();
         enemylist = new ArrayList<>();
         miniboslist = new ArrayList<>();
         random = new Random();
         this.player = player;
+        this.onLog = onLog;
+        this.onCounter = onCounter;
         
         npclist.add(new Npc("Kakek buta"));
         enemylist.add(new Goblin("Goblin", 20, 10, false));
         miniboslist.add(new Dragon("Dragon", 20, 30, false));
 
     }
+    
+    public Goblin getMusuhAktif() {
+        return musuhAktif;
+    }
 
     public void randomEncounter(){
         int chance = random.nextInt(100);
 
-        if(chance < 20){
+        if (chance < 20) {
+            // Encounter NPC
             Npc npc = npclist.get(random.nextInt(npclist.size()));
-            Dragon miniBos = miniboslist.get(random.nextInt(miniboslist.size()));
-            System.out.println("Kamu bertemu dengan " + npc.getNama());
-            System.out.println("--------------------------------------------");
-            System.out.print("Apakah anda ingin berbicara dengan ? " + npc.getNama() + " (Y/N) : ");
-            String berbicara = input.nextLine();
-            if(berbicara.equalsIgnoreCase("Y")){
-                npc.kalimatNpcGretting();
-                npc.misiNpc();
-                System.out.println("Apakah anda ingin membantu kakek tua? (Y/N) : ");
-                String membantu = input.nextLine();
-                if(membantu.equalsIgnoreCase("Y")){
-                    npc.miniNpcMiniBos();
-                    PertempuranBos pertempuranBos = new PertempuranBos(player, miniBos);
-                    pertempuranBos.startPertempuran();
-                    if(miniBos.getHp() <= 0){
-                        npc.hadiah();
-                        ((GetChest)player).getChestPlayer();
-                    }
-                }
-            }
-        }
-        else if(chance < 80){
+            onCounter.accept("npc");
+            onLog.accept("Kamu bertemu dengan " + npc.getNama());
+            onLog.accept("Tekan 'Bicara' untuk berinteraksi dengan " + npc.getNama());
+
+
+        } else if (chance < 80) {
+            // Encounter Goblin
             Goblin enemy = enemylist.get(random.nextInt(enemylist.size()));
-            System.out.println("Kamu bertemu dengan " + enemy.getUsername());
-            System.out.println("--------------------------------------------");
+            onCounter.accept("goblin");
+            musuhAktif = enemy;
+            onLog.accept("Kamu bertemu dengan " + enemy.getUsername() + "!");
             enemy.attackCharacter(player);
-            System.out.print("Apakah anda ingin menyerang enemy? (Y/N) : ");
-            String menyerang = input.nextLine();
-            if(menyerang.equalsIgnoreCase("Y")){
-                player.attackCharacter(enemy);
-            }
-        }else{
-            System.out.println("Tidak ada yang terjadi");
+            onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
+
+        } else {
+            musuhAktif = null;
+            onCounter.accept("default");
+            onLog.accept("Tidak ada yang terjadi, kamu melanjutkan perjalanan.");
         }
     }
 }

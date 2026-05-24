@@ -47,9 +47,9 @@
           spacing="10"
           mouseTransparent="true">
         <padding>
-            <Insets top="100" left="40"/>
+            <Insets top="100" left="120"/>
         </padding>
-
+        <Label fx:id="lblNama"  text="Nama : "  styleClass="nama-stats"/>
         <Label fx:id="lblLevel" text="Level : " styleClass="level-stats"/>
         <Label fx:id="lblWeapon" text="Weapon : " styleClass="weapon-stats"/>
         <Label fx:id="lblArmor" text="Armor : " styleClass="armor-stats"/>

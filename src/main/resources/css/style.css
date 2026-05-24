@@ -218,3 +218,9 @@
     -fx-font-family: "Press Start 2P";
     -fx-text-fill: white;
 }
+.nama-stats{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Press Start 2P";
+    -fx-text-fill: white;
+}

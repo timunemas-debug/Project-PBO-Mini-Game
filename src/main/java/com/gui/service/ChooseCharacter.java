@@ -1,3 +1,5 @@
+//SUDAH DI IMPLEMENTASI KE FX
+
 package com.gui.service;
 
 import com.gui.model.CharacterMiniGame.Character;
