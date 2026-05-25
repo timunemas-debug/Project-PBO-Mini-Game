@@ -1,18 +1,24 @@
 package com.gui.service;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import com.gui.model.CharacterMiniGame.Character;
 import com.gui.model.CharacterMiniGame.Character.Heal;
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 
+
 public class PertempuranBos extends Pertempuran{
     private Character enemy;
+    private Consumer<String> onLog;
+    private Consumer<String> onCounter;
     private Scanner input = new Scanner(System.in);
 
 
-    public PertempuranBos(Character player, Character enemy){
+    public PertempuranBos(Character player, Character enemy, Consumer<String> onLog, Consumer<String> onCounter){
         super(player);
         this.enemy = enemy;
+        this.onLog = onLog;
+        this.onCounter = onCounter;
     }
 
     @Override

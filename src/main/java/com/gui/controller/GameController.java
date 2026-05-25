@@ -4,6 +4,8 @@ import com.gui.service.ChooseCharacter;
 import com.gui.service.Pertempuran;
 import com.gui.model.CharacterMiniGame.Character;
 import com.gui.model.CharacterMiniGame.Draven;
+import com.gui.model.CharacterMiniGame.NPC.Npc;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,17 +30,22 @@ public class GameController extends BaseController{
     @FXML
     private Button btnAttack;
     @FXML
+    private Button btnNpc;
+    @FXML
     private TextArea logArea;
+    @FXML
+    private ImageView goblinImageView;
+    @FXML
+    private ImageView npcImageView;
+
 
     private Pertempuran pertempuran;
     private Character player;
 
-    @FXML
-    
     
     public void initialize(){
         System.out.println("INITIALIZE LOBBY DI CALL");
-        var streampertempuran = getClass().getResourceAsStream("/Images/bgpertempuran1.png");
+        var streampertempuran = getClass().getResourceAsStream("/Images/bgpertempuran.png");
         
         if(streampertempuran != null){
             bgimagepertempuran.setImage(new Image(streampertempuran));
@@ -60,20 +67,37 @@ public class GameController extends BaseController{
         }
     }
 
-    public void gantiBackground(String type){
-        String imagePath = switch(type){
-            case "goblin" -> "/Images/goblinPertempuran.png";
-            case "npc" -> "/Images/npcPertempuran.png";
-            case "default" -> "/Images/bgPertempuran1.png";
-            default -> "";
+    public void handleGambar(String state){
+        String path = switch(state){
+            case "goblin_muncul" -> "/Images/GoblinHidupPertempuran.png";
+            case "goblin_mati" -> "/Images/GoblinMatiPertempuran.png";
+            case "goblin_hilang" -> null;
+            default             -> null;
         };
 
-        var stream = getClass().getResourceAsStream(imagePath);
-        if(stream != null){
-            bgimagepertempuran.setImage(new Image(stream));
+        if(path == null){
+            goblinImageView.setVisible(false);
+        }else{
+            var stream = getClass().getResourceAsStream(path);
+            if(stream != null){
+                goblinImageView.setImage(new Image(stream));
+                goblinImageView.setVisible(true);
         }
     }
-    
+        String bgPath = switch(state){
+            case "npc_muncul" -> "/Images/npcPertempuran.png";
+            case "goblin_muncul" -> "/Images/bgpertempuran.png";
+            case "goblin_mati" -> "/Images/bgpertempuran.png";
+            case "goblin_hilang" -> "/Images/bgpertempuran.png";
+            default         -> "/Images/bgpertempuran.png";
+        };
+
+        var bgStream = getClass().getResourceAsStream(bgPath);
+        if(bgStream != null){
+            bgimagepertempuran.setImage(new Image(bgStream));
+        }
+    }
+
     public void setPlayer(Character player) {
         this.player = player;
         if(player == null){
@@ -85,7 +109,8 @@ public class GameController extends BaseController{
         this.player = player;
         this.pertempuran = new Pertempuran(player,
             msg -> logArea.appendText(msg + "\n"),
-            type -> gantiBackground(type));
+            state -> handleGambar(state)
+        );
         logArea.appendText("Pertempuran dimulai! Selamat datang, " + player.getUsername() + "\n");
     }
     
@@ -117,6 +142,25 @@ public class GameController extends BaseController{
             return;
         }
         player.attackCharacter(musuh);
+
+        if(musuh.getHp() <= 0){
+            logArea.appendText("Goblin telah mati!\n");
+            handleGambar("goblin_mati");
+        }
+    }
+
+    @FXML
+    private void bicaraNpc(ActionEvent event){
+        if(pertempuran == null){
+            System.out.println("EROR: bicara npc");
+            return;
+        }
+        Npc npc = pertempuran.getNpcAktif();
+        if(npc == null){
+            logArea.appendText("Tidak ada npc");
+            return;
+        }
+        npc.kalimatNpcGretting();
     }
 
     @FXML

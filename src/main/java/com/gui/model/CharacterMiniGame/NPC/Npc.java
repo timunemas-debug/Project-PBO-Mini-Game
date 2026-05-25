@@ -1,10 +1,18 @@
 package com.gui.model.CharacterMiniGame.NPC;
 
+import java.util.function.Consumer;
+
 public class Npc {
     private String nama;
+    private Consumer<String> onLog;
 
     public Npc(String nama){
         this.nama = nama;
+    }
+
+    public Npc(String nama, Consumer<String> onlog){
+        this.nama = nama;
+        this.onLog = onlog;
     }
 
     public String getNama() {
@@ -12,25 +20,25 @@ public class Npc {
     }
 
     public void kalimatNpcGretting(){
-        System.out.println("hahaha...");
-        System.out.println("Hallo, kamu warga baru disini ya? hahaha");
-        System.out.println("Perkenalkan saya " + getNama());
+        onLog.accept("hahaha...");
+        onLog.accept("Hallo, kamu warga baru disini ya? hahaha");
+        onLog.accept("Perkenalkan saya " + getNama());
     }
 
     public void misiNpc(){
-        System.out.println("Saya ingin meminta bantuan kamu anak muda...");
+        onLog.accept("Saya ingin meminta bantuan kamu anak muda...");
     }
 
     public void miniNpcMiniBos(){
-        System.out.println("Apakah kamu melihat naga yang tertidur itu anak muda? ");
-        System.out.println("Lawan lah dia demi saya anak muda...");
+        onLog.accept("Apakah kamu melihat naga yang tertidur itu anak muda? ");
+        onLog.accept("Lawan lah dia demi saya anak muda...");
     }
 
     public void hadiah(){
-        System.out.println("-------------------------------------------------");
-        System.out.println("Gimana melawan naga itu? pasti kamu kesusahan ya.");
-        System.out.println("Terimakasih ya anak muda..., ini saya kasih kamu hadiah semoga bisa membantu kamu untuk berpetualang");
-        System.out.println("-------------------------------------------------");
+        onLog.accept("-------------------------------------------------");
+        onLog.accept("Gimana melawan naga itu? pasti kamu kesusahan ya.");
+        onLog.accept("Terimakasih ya anak muda..., ini saya kasih kamu hadiah semoga bisa membantu kamu untuk berpetualang");
+        onLog.accept("-------------------------------------------------");
 
     }
 }

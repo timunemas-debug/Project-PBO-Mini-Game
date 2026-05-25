@@ -19,6 +19,14 @@
                preserveRatio="false"
                smooth="true"
                mouseTransparent="true"/>
+               
+    <ImageView fx:id="goblinImageView"
+               visible="false"
+               fitWidth="200"
+               fitHeight="200"
+               preserveRatio="true"
+               mouseTransparent="true"/>
+
         <BorderPane>
                 <top>
                         <VBox alignment="CENTER_LEFT"
@@ -59,6 +67,11 @@
                                 prefHeight="50"
                                 styleClass="btn-attack-pertempuran"
                                 onAction="#attackEnemy"/>
+                        <Button fx:id="btnNpc"
+                                text="BICARA"
+                                prefWidth="250"
+                                prefHeight="50"
+                                onAction="#bicaraNpc"/>
                
                        </HBox>
                 </center>

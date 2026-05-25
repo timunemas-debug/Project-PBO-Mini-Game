@@ -1,29 +1,32 @@
 package com.gui.service;
 
 import com.gui.model.CharacterMiniGame.Character;
-
+import com.gui.model.CharacterMiniGame.NPC.Npc;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
 import com.gui.model.CharacterMiniGame.Character.Heal;
 import com.gui.model.CharacterMiniGame.Character.DisplayPlayer;
 
+
 public class Pertempuran {
     private Character player;
     private RandomNE encounter;
     private Consumer<String> onLog;
     private Consumer<String> onCounter;
+    private Consumer<String> onGambar;
+
     private Scanner input = new Scanner(System.in);
 
     public Pertempuran(Character player){
-        this(player, System.out::println, type -> {});
+        this(player, System.out::println, gambar -> {});
     }
 
-    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onCounter){
+    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onGambar){
         this.player = player;
         this.onLog = onLog;
-        this.onCounter = onCounter;
-        encounter = new RandomNE(player, onLog, onCounter);
+        this.onGambar = onGambar;
+        encounter = new RandomNE(player, onLog, onGambar);
     }
 
     public Character getPlayer() {
@@ -40,6 +43,10 @@ public class Pertempuran {
 
     public Character getMusuhAktif(){
         return encounter.getMusuhAktif();
+    }
+
+    public Npc getNpcAktif(){
+        return encounter.getNpcAktif();
     }
 
     public void startPertempuran(){
@@ -78,6 +85,7 @@ public class Pertempuran {
                         System.out.println("Pilihan anda tidak valid");
                 }
             } catch (Exception e) {
+                System.out.println("EROR: Harus berupa angka");
                 onLog.accept("Input harus berupa angka!");
                 input.nextLine();
             }
