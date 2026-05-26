@@ -15,6 +15,7 @@ public class Pertempuran {
     private Consumer<String> onLog;
     private Consumer<String> onCounter;
     private Consumer<String> onGambar;
+    private DialogManager dialogManager = new DialogManager();
 
     private Scanner input = new Scanner(System.in);
 
@@ -47,6 +48,23 @@ public class Pertempuran {
 
     public Npc getNpcAktif(){
         return encounter.getNpcAktif();
+    }
+
+    public void mulaiDialogNpc(){
+        Npc npc = getNpcAktif();
+        dialogManager.load(log -> {
+            npc.kalimatNpcGretting(log);
+            npc.misiNpc(log);
+            npc.misiNpcMiniBos(log);
+        });
+    }
+
+    public String nextDialog(){
+        return dialogManager.next();
+    }
+
+    public boolean isDialogSelesai(){
+        return dialogManager.isSelesai();
     }
 
     public void startPertempuran(){

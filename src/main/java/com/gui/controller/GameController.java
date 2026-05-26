@@ -3,13 +3,17 @@ package com.gui.controller;
 import com.gui.service.ChooseCharacter;
 import com.gui.service.Pertempuran;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.gui.model.CharacterMiniGame.Character;
 import com.gui.model.CharacterMiniGame.Draven;
 import com.gui.model.CharacterMiniGame.NPC.Npc;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,6 +39,8 @@ public class GameController extends BaseController{
     private Button btnAttack;
     @FXML
     private Button btnNpc;
+    @FXML
+    private Button btnNext;
     @FXML
     private TextArea logArea;
     @FXML
@@ -188,6 +194,17 @@ public class GameController extends BaseController{
         );
         showLog("Pertempuran dimulai! Selamat datang, " + player.getUsername() + "\n");
     }
+
+    private void tampilNext() {
+    String pesan = pertempuran.nextDialog();
+    if (pesan != null) {
+        showLog(pesan);
+        btnNext.setVisible(true);
+    } else {
+        btnNext.setVisible(false);
+        logArea.setVisible(false);
+    }
+}
     
     @FXML
     private void onJalan(ActionEvent event){
@@ -223,19 +240,17 @@ public class GameController extends BaseController{
             handleGambar("goblin_mati");
         }
     }
+    
 
     @FXML
     private void bicaraNpc(ActionEvent event){
-        if(pertempuran == null){
-            System.out.println("EROR: bicara npc");
-            return;
-        }
-        Npc npc = pertempuran.getNpcAktif();
-        if(npc == null){
-            showLog("Tidak ada npc");
-            return;
-        }
-        npc.kalimatNpcGretting();
+        pertempuran.mulaiDialogNpc();
+        tampilNext();
+    }
+
+    @FXML
+    private void nextDialog(ActionEvent event){
+        tampilNext();
     }
 
     @FXML

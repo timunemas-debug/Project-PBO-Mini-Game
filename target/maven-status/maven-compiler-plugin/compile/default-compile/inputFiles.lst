@@ -4,6 +4,7 @@
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/LobbyController.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/MainMenuController.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/MemilihCharacterController.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/PertempuranController.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/controller/ProfileController.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Character.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Draven.java
@@ -14,6 +15,7 @@
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/Lyra.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/model/CharacterMiniGame/NPC/Npc.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/ChooseCharacter.java
+/home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/DialogManager.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/DisplayMenu.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/Inventory.java
 /home/jeremy/Project-PBO-Mini-Game/src/main/java/com/gui/service/Main.java

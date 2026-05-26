@@ -118,6 +118,10 @@
                                 prefHeight="50"
                                 onAction="#bicaraNpc"
                                 styleClass="btn-bicara-pertempuran"/>
+                        <Button fx:id="btnNext"
+                                text="NEXT"
+                                onAction="#nextDialog"
+                                visible="false"/>
                
                        </HBox>
                 </bottom>
