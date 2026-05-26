@@ -192,6 +192,39 @@
     -fx-background-color: #cc3333;
     -fx-text-fill: #ffffff;
 }
+.btn-attack-pertempuran{
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-family: "Press Start 2P";
+    -fx-padding: 12 40 12 40;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+.btn-bicara-pertempuran{
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-family: "Press Start 2P";
+    -fx-padding: 12 40 12 40;
+    -fx-border-width: 2;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+
+}
+.btn-attack-pertempuran:hover{
+    -fx-background-color: #cc3333;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-bicara-pertempuran:hover{
+    -fx-background-color: #cc3333;
+    -fx-text-fill: #ffffff;
+}
+
 
 
 .level-stats {

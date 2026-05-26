@@ -47,7 +47,7 @@ public class RandomNE {
     public void randomEncounter(){
         int chance = random.nextInt(100);
 
-        if (chance < 20) {
+        if (chance < 10) {
             // Encounter NPC
             Npc npc = npclist.get(random.nextInt(npclist.size()));
             npcAktif = npc;
@@ -56,7 +56,7 @@ public class RandomNE {
             onLog.accept("Tekan 'Bicara' untuk berinteraksi dengan " + npc.getNama());
 
 
-        } else if (chance < 40) {
+        } else if (chance < 50) {
             // Encounter Goblin
             Goblin enemy = enemylist.get(random.nextInt(enemylist.size()));
             musuhAktif = enemy;
@@ -68,6 +68,7 @@ public class RandomNE {
 
         } else {
             musuhAktif = null;
+            onGambar.accept("character_muncul");
             onGambar.accept("goblin_hilang");
             onLog.accept("Tidak ada yang terjadi, kamu melanjutkan perjalanan.");
         }

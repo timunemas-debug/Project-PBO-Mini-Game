@@ -36,7 +36,7 @@ public class GameController extends BaseController{
     @FXML
     private ImageView goblinImageView;
     @FXML
-    private ImageView npcImageView;
+    private ImageView characterImageView;
 
 
     private Pertempuran pertempuran;
@@ -66,8 +66,21 @@ public class GameController extends BaseController{
             btnHeal.setDisable(true);
         }
     }
-
+    
     public void handleGambar(String state){
+        Character selected = ChooseCharacter.getSelectCharacter();
+        String namaCharacter = selected.getUsername();
+        String pathCharacter = "/Images/Character" + namaCharacter + ".png";
+        String characterPath = switch(state){
+            case "character_muncul", "goblin_muncul", "goblin_hilang", "goblin_mati" -> pathCharacter;
+            case "character_get_heal" -> "/Images/CharacterDravenHeal.png";
+            default                 -> null;
+        };
+        System.out.println("Characterpath: " + characterPath);
+
+        var streammemek = getClass().getResourceAsStream("/Images/CharacterDravenHeal.png");
+        System.out.println("Heal stream : " + streammemek);
+
         String path = switch(state){
             case "goblin_muncul" -> "/Images/GoblinHidupPertempuran.png";
             case "goblin_mati" -> "/Images/GoblinMatiPertempuran.png";
@@ -83,9 +96,21 @@ public class GameController extends BaseController{
                 goblinImageView.setImage(new Image(stream));
                 goblinImageView.setVisible(true);
         }
-    }
+        
+      }
+        if(characterPath == null){
+            characterImageView.setVisible(false);
+        }else{
+            var streamCharacter = getClass().getResourceAsStream(characterPath);
+            if(streamCharacter != null){
+                characterImageView.setImage(new Image(streamCharacter));
+                characterImageView.setVisible(true);
+            }
+        }
+
         String bgPath = switch(state){
             case "npc_muncul" -> "/Images/npcPertempuran.png";
+            case "character_muncul" -> "/Images/bgpertempuran.png";
             case "goblin_muncul" -> "/Images/bgpertempuran.png";
             case "goblin_mati" -> "/Images/bgpertempuran.png";
             case "goblin_hilang" -> "/Images/bgpertempuran.png";
@@ -105,6 +130,7 @@ public class GameController extends BaseController{
         }
         if(player instanceof Draven d){
             d.setOnLog(msg -> logArea.appendText(msg + "\n"));
+            d.setOnGambar(state -> handleGambar(state));
         }
         this.player = player;
         this.pertempuran = new Pertempuran(player,

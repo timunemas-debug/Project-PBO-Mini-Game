@@ -13,6 +13,7 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     private double maxHp;
     private int level;
     private Consumer<String> onLog;
+    private Consumer<String> onGambar;
     private String weapon,armor,skill;
     public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp){
         super(username, hp, attackPower, alive);
@@ -20,11 +21,12 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
         this.level = level;
     }
 
-    public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp, Consumer<String> onLog){
+    public Draven(String username, double hp, double attackPower, int level,boolean alive, double maxHp, Consumer<String> onLog, Consumer<String> onGambar){
         super(username, hp, attackPower, alive);
         this.maxHp = maxHp;
         this.level = level;
         this.onLog = onLog;
+        this.onGambar = onGambar;
     }
 
     public void setOnLog(Consumer<String> onLog) {
@@ -50,6 +52,10 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
     }
     public String getWeapon() {
         return weapon;
+    }
+
+    public void setOnGambar(Consumer<String> onGambar) {
+        this.onGambar = onGambar;
     }
 
     @Override
@@ -83,6 +89,7 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
             onLog.accept("Darah sudah tidak bisa ditambah!");
         }else{
             setHp(Math.min(getHp() + 10, getMaxHp()));
+            onGambar.accept("character_get_heal");
             onLog.accept(getUsername() + " Menambah Darah ");
         }
     }
