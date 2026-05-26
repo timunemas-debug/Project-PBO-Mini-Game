@@ -257,3 +257,14 @@
     -fx-font-family: "Press Start 2P";
     -fx-text-fill: white;
 }
+.log-area{
+    -fx-font-family: "Press Start 2P";
+    -fx-font-size: 10px;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-text-fill: black;
+    -fx-max-width: 300px;
+    -fx-max-height: 80px;
+}
+.text-area .content {
+    -fx-background-color: transparent;
+}

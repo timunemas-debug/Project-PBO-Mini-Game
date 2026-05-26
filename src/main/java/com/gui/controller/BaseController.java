@@ -17,5 +17,5 @@ public abstract class BaseController {
         stage.setResizable(false);
         stage.show();
     }
-    
+
 }

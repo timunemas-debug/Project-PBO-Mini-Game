@@ -49,8 +49,11 @@ public class RandomNE {
 
         if (chance < 10) {
             // Encounter NPC
+            musuhAktif = null;
             Npc npc = npclist.get(random.nextInt(npclist.size()));
             npcAktif = npc;
+            onGambar.accept("character_muncul");
+            onGambar.accept("goblin_hilang");
             onGambar.accept("npc_muncul");
             onLog.accept("Kamu bertemu dengan " + npc.getNama());
             onLog.accept("Tekan 'Bicara' untuk berinteraksi dengan " + npc.getNama());
@@ -58,6 +61,9 @@ public class RandomNE {
 
         } else if (chance < 50) {
             // Encounter Goblin
+            npcAktif = null;
+            onGambar.accept("npc_hilang");
+            onGambar.accept("character_muncul");
             Goblin enemy = enemylist.get(random.nextInt(enemylist.size()));
             musuhAktif = enemy;
             onGambar.accept("goblin_muncul");
@@ -68,7 +74,9 @@ public class RandomNE {
 
         } else {
             musuhAktif = null;
+            npcAktif = null;
             onGambar.accept("character_muncul");
+            onGambar.accept("npc_hilang");
             onGambar.accept("goblin_hilang");
             onLog.accept("Tidak ada yang terjadi, kamu melanjutkan perjalanan.");
         }
