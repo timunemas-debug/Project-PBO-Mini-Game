@@ -54,8 +54,9 @@ public class GameController extends BaseController{
     @FXML
     private ImageView menambahDarahImageView;
     @FXML
-    private ImageView gameoverImageView;
-
+    private ImageView characterMatiImageView;
+    @FXML
+    private ImageView gameoverbgImageView;
 
     private Pertempuran pertempuran;
     private Character player;
@@ -86,7 +87,7 @@ public class GameController extends BaseController{
             btnHeal.setDisable(true);
         }
     }
-    
+
     public void handleGambar(String state){
 
         Character selected = ChooseCharacter.getSelectCharacter();
@@ -121,11 +122,15 @@ public class GameController extends BaseController{
             }
 
             case "character_mati" -> {
-                var stream = getClass().getResourceAsStream("/Images/gameover.png");
+                var stream = getClass().getResourceAsStream("/Images/dravenMatiPertempuran.png");
                 if(stream != null){
-                    gameoverImageView.setImage(new Image(stream));
-                    gameoverImageView.setVisible(true);
+                    characterMatiImageView.setImage(new Image(stream));
+                    characterMatiImageView.setVisible(true);
                 }
+            }
+
+            case "character_hilang" -> {
+                characterImageView.setVisible(false);
             }
 
             case "goblin_muncul" -> {
@@ -168,7 +173,7 @@ public class GameController extends BaseController{
                 }
                 npcImageView.setVisible(true);
             }
-
+            
             case "npc_hilang" -> {
                 var stream = getClass().getResourceAsStream("/Images/bgpertempuran.png");
                 if(stream != null){
@@ -177,9 +182,49 @@ public class GameController extends BaseController{
                 npcImageView.setVisible(false);
             }
 
+            case "gameover_muncul" -> {
+                var stream = getClass().getResourceAsStream("/Images/gameoverbg.png");
+                if(stream != null){
+                    gameoverbgImageView.setImage(new Image(stream));
+                    gameoverbgImageView.setVisible(true);
+                }
+            }
+
         }
     }
 
+    private void gameOverCharacter(ActionEvent event)throws Exception{
+        if(pertempuran == null){
+            System.out.println("EROR: GAME OVER");
+            return;
+        }
+        if(player.getHp() <= 0){
+            btnHome.setVisible(true);
+            btnHome.setDisable(false);
+            btnJalan.setDisable(true);
+            btnHeal.setDisable(true);
+            btnNpc.setDisable(true);
+            btnAttack.setDisable(true);
+            btnExit.setDisable(true);
+
+            handleGambar("character_hilang");
+            handleGambar("character_mati");
+            handleGambar("gameover_muncul");
+
+            showLog(player.getUsername() + " Telah mati");
+    
+            PauseTransition delay = new PauseTransition(Duration.seconds(20));
+            delay.setOnFinished(e -> {
+                try {
+                    switchScene(event, "/fxml/lobby.fxml");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+            delay.play();
+        }
+    }
+    
     public void showLog(String msg){
         logArea.clear();
         logArea.appendText(msg);
@@ -224,6 +269,11 @@ public class GameController extends BaseController{
             System.out.println("EROR ON JALAN");
         }
         pertempuran.aksiJalan();
+        try {
+            gameOverCharacter(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -253,34 +303,6 @@ public class GameController extends BaseController{
         }
     }
     
-    @FXML
-    private void gameOver(ActionEvent event)throws Exception{
-        if(pertempuran == null){
-            System.out.println("EROR: GAME OVER");
-            return;
-        }
-        if(player.getHp() <= 0){
-            btnHome.setDisable(false);
-            
-            btnJalan.setDisable(true);
-            btnHeal.setDisable(true);
-            btnNpc.setDisable(true);
-            btnAttack.setDisable(true);
-
-            showLog(player.getUsername() + "Telah mati");
-            handleGambar("character_mati");
-
-            PauseTransition delay = new PauseTransition(Duration.seconds(2));
-            delay.setOnFinished(e -> {
-                try {
-                    switchScene(event, "/fxml/lobby.fxml");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            });
-            delay.play();
-        }
-    }
 
     @FXML
     private void bicaraNpc(ActionEvent event){

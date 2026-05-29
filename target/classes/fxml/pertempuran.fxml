@@ -21,6 +21,13 @@
                smooth="true"
                mouseTransparent="true"/>
 
+    <ImageView fx:id="gameoverbgImageView"
+               fitWidth="${rootpertempuran.width}"
+               fitHeight="${rootpertempuran.height}"
+               preserveRatio="false"
+               smooth="true"
+               mouseTransparent="true"/>
+
    <AnchorPane StackPane.alignment="CENTER"
                 maxWidth="1280"
                 mouseTransparent="true">
@@ -59,6 +66,16 @@
                       mouseTransparent="true"
                       AnchorPane.leftAnchor="50"
                       AnchorPane.bottomAnchor="0"/>
+        
+           <ImageView fx:id="characterMatiImageView"
+                      visible="false"
+                      fitWidth="400"
+                      fitHeight="400"
+                      preserveRatio="true"
+                      mouseTransparent="true"
+                      AnchorPane.leftAnchor="250"
+                      AnchorPane.bottomAnchor="50"/>
+
    </AnchorPane>
 <TextArea fx:id="logArea"
           prefHeight="80"
@@ -125,8 +142,8 @@
                                 text="HOME"
                                 prefWidth="250"
                                 prefHeight="50"
-                                onAction="#gameOver"
-                                disable="true"
+                                onAction="#exitGame"
+                                visible="false"
                                 styleClass="btn-back-home"/>
                
                        </HBox>
