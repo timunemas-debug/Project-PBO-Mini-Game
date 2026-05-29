@@ -61,7 +61,7 @@ public abstract class Character {
     public Inventory getInventoryPlayer() {
         return inventoryPlayer;
     }
-
+    
     public interface Heal{
         void heal();
     }

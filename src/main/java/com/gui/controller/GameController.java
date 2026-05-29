@@ -42,6 +42,8 @@ public class GameController extends BaseController{
     @FXML
     private Button btnNext;
     @FXML
+    private Button btnHome;
+    @FXML
     private TextArea logArea;
     @FXML
     private ImageView goblinImageView;
@@ -51,6 +53,8 @@ public class GameController extends BaseController{
     private ImageView npcImageView;
     @FXML
     private ImageView menambahDarahImageView;
+    @FXML
+    private ImageView gameoverImageView;
 
 
     private Pertempuran pertempuran;
@@ -113,6 +117,14 @@ public class GameController extends BaseController{
                     });
 
                     delay.play();
+                }
+            }
+
+            case "character_mati" -> {
+                var stream = getClass().getResourceAsStream("/Images/gameover.png");
+                if(stream != null){
+                    gameoverImageView.setImage(new Image(stream));
+                    gameoverImageView.setVisible(true);
                 }
             }
 
@@ -223,7 +235,7 @@ public class GameController extends BaseController{
     }
 
     @FXML
-    private void attackEnemy(ActionEvent event){
+    private void attackEnemy(ActionEvent event)throws Exception{
         if(pertempuran == null){
             System.out.println("EROR ATTACK ENEMY");
             return;
@@ -241,6 +253,34 @@ public class GameController extends BaseController{
         }
     }
     
+    @FXML
+    private void gameOver(ActionEvent event)throws Exception{
+        if(pertempuran == null){
+            System.out.println("EROR: GAME OVER");
+            return;
+        }
+        if(player.getHp() <= 0){
+            btnHome.setDisable(false);
+            
+            btnJalan.setDisable(true);
+            btnHeal.setDisable(true);
+            btnNpc.setDisable(true);
+            btnAttack.setDisable(true);
+
+            showLog(player.getUsername() + "Telah mati");
+            handleGambar("character_mati");
+
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(e -> {
+                try {
+                    switchScene(event, "/fxml/lobby.fxml");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+            delay.play();
+        }
+    }
 
     @FXML
     private void bicaraNpc(ActionEvent event){

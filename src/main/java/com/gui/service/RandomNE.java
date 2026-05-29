@@ -45,6 +45,11 @@ public class RandomNE {
     }
 
     public void randomEncounter(){
+        if(!player.isAlive()){
+            onLog.accept("kamu sudah mati");
+            return;
+        }
+
         int chance = random.nextInt(100);
 
         if (chance < 10) {
@@ -70,7 +75,12 @@ public class RandomNE {
             onLog.accept("Kamu bertemu dengan " + enemy.getUsername() + "!");
             enemy.attackCharacter(player);
             
-            onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
+            if(!player.isAlive()){
+                onLog.accept("kamu sudah mati");
+                onGambar.accept("character_mati");
+            }else{
+                onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
+            }
 
         } else {
             musuhAktif = null;

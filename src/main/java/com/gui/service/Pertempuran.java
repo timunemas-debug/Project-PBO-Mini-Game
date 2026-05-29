@@ -116,6 +116,7 @@ public class Pertempuran {
                 ((Heal) player).heal();
             }else{
                 onLog.accept("Kamu Kalah!");
+                onGambar.accept("character_mati");
             }
         }
     }

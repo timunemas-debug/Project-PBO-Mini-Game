@@ -101,7 +101,7 @@ public class Draven extends Character implements Heal, GetChest, DisplayPlayer{
         if(enemy.getHp() <= 0){
             enemy.setHp(0);
             enemy.setAlive(false);
-            onLog.accept(enemy.getUsername() + " telah kalah ");
+            onLog.accept(enemy.getUsername() + " telah kalah");
         }
     }
     

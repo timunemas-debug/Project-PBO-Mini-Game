@@ -84,7 +84,10 @@
                                 prefHeight="50"
                                 styleClass="btn-exit-pertempuran"
                                 onAction="#exitGame"/>
-
+                        <Button fx:id="btnNext"
+                                text="NEXT"
+                                onAction="#nextDialog"
+                                visible="false"/>
                     </VBox>
                 </top>
 
@@ -118,10 +121,13 @@
                                 prefHeight="50"
                                 onAction="#bicaraNpc"
                                 styleClass="btn-bicara-pertempuran"/>
-                        <Button fx:id="btnNext"
-                                text="NEXT"
-                                onAction="#nextDialog"
-                                visible="false"/>
+                        <Button fx:id="btnHome"
+                                text="HOME"
+                                prefWidth="250"
+                                prefHeight="50"
+                                onAction="#gameOver"
+                                disable="true"
+                                styleClass="btn-back-home"/>
                
                        </HBox>
                 </bottom>
