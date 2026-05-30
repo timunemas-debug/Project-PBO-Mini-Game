@@ -52,10 +52,22 @@ public class Pertempuran {
 
     public void mulaiDialogNpc(){
         Npc npc = getNpcAktif();
+        npc.setOnGambar(onGambar);
         dialogManager.load(log -> {
             npc.kalimatNpcGretting(log);
             npc.misiNpc(log);
-            npc.misiNpcMiniBos(log);
+        });
+        dialogManager.addWithAksi(
+        "Apakah kamu melihat naga yang tertidur itu anak muda?",
+        () -> {
+            onGambar.accept("character_hilang");
+            onGambar.accept("naga_tidur_muncul");
+        });
+        dialogManager.addWithAksi("Lawanlah dia anak muda",() -> {
+            onGambar.accept("bg_naga");
+            onGambar.accept("naga_muncul");
+            onGambar.accept("character_muncul");
+            encounter.attackDragon();
         });
     }
 

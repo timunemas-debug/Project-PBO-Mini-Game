@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 
 public class Npc {
     private String nama;
+    private Consumer<String> onGambar;
 
     public Npc(String nama){
         this.nama = nama;
@@ -11,6 +12,10 @@ public class Npc {
 
     public String getNama() {
         return nama;
+    }
+
+    public void setOnGambar(Consumer<String> onGambar) {
+        this.onGambar = onGambar;
     }
 
     public void kalimatNpcGretting(Consumer<String> onLog){
@@ -21,11 +26,6 @@ public class Npc {
 
     public void misiNpc(Consumer<String> onLog){
         onLog.accept("Saya ingin meminta bantuan kamu anak muda...");
-    }
-
-    public void misiNpcMiniBos(Consumer<String> onLog){
-        onLog.accept("Apakah kamu melihat naga yang tertidur itu anak muda? ");
-        onLog.accept("Lawan lah dia demi saya anak muda...");
     }
 
     public void hadiah(Consumer<String> onLog){

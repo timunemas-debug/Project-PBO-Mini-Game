@@ -3,17 +3,14 @@ package com.gui.controller;
 import com.gui.service.ChooseCharacter;
 import com.gui.service.Pertempuran;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.gui.model.CharacterMiniGame.Character;
 import com.gui.model.CharacterMiniGame.Draven;
-import com.gui.model.CharacterMiniGame.NPC.Npc;
+import com.gui.model.CharacterMiniGame.Enemy.Goblin;
+import com.gui.model.CharacterMiniGame.Enemy.Dragon;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -55,6 +52,8 @@ public class GameController extends BaseController{
     private ImageView menambahDarahImageView;
     @FXML
     private ImageView characterMatiImageView;
+    @FXML
+    private ImageView nagaImageView;
     @FXML
     private ImageView gameoverbgImageView;
 
@@ -182,6 +181,49 @@ public class GameController extends BaseController{
                 npcImageView.setVisible(false);
             }
 
+            case "naga_tidur_muncul" -> {
+                var stream = getClass().getResourceAsStream("/Images/nagaPertempuran.png");
+                if(stream != null){
+                    bgimagepertempuran.setImage(new Image(stream));
+                }
+            }
+
+            case "naga_muncul" -> {
+                var stream_background_naga = getClass().getResourceAsStream("/Images/bgpertempurannaga.png");
+                if(stream_background_naga != null){
+                    bgimagepertempuran.setImage(new Image(stream_background_naga));
+                }
+
+                var stream = getClass().getResourceAsStream("/Images/nagamuncul.png");
+                if(stream != null){
+                    nagaImageView.setImage(new Image(stream));
+                    nagaImageView.setVisible(true);
+                }
+            }
+
+            case "naga_nyerang" -> {
+                var stream = getClass().getResourceAsStream("/Images/naga_nyerang.png");
+                if(stream != null){
+                    nagaImageView.setImage(new Image(stream));
+                    nagaImageView.setVisible(true);
+                }
+            }
+
+            case "naga_hilang" -> {
+                var stream = getClass().getResourceAsStream("/Images/bgpertempurannaga.png");
+                if(stream != null){
+                    nagaImageView.setVisible(false);
+                }
+            }
+
+            case "naga_mati" -> {
+                var stream = getClass().getResourceAsStream("/Images/nagamati.png");
+                if(stream != null){
+                    nagaImageView.setImage(new Image(stream));
+                    nagaImageView.setVisible(true);
+                }
+            }
+
             case "gameover_muncul" -> {
                 var stream = getClass().getResourceAsStream("/Images/gameoverbg.png");
                 if(stream != null){
@@ -260,6 +302,9 @@ public class GameController extends BaseController{
     } else {
         btnNext.setVisible(false);
         logArea.setVisible(false);
+        if(pertempuran.getMusuhAktif() != null){
+            btnJalan.setDisable(true);
+        }
     }
 }
     
@@ -298,11 +343,15 @@ public class GameController extends BaseController{
         player.attackCharacter(musuh);
 
         if(musuh.getHp() <= 0){
-            showLog("Goblin telah mati!\n");
-            handleGambar("goblin_mati");
+            showLog(musuh.getUsername() + " Sudah mati\n");
+            if(musuh instanceof Goblin){
+                handleGambar("goblin_mati");
+            }else if(musuh instanceof Dragon){
+                handleGambar("naga_mati");
+            }
         }
+        gameOverCharacter(event);
     }
-    
 
     @FXML
     private void bicaraNpc(ActionEvent event){

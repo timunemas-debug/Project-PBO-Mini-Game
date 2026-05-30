@@ -57,6 +57,15 @@
                       mouseTransparent="true"
                       AnchorPane.rightAnchor="120"
                       AnchorPane.bottomAnchor="40"/>
+                      
+           <ImageView fx:id="nagaImageView"
+                      visible="false"
+                      fitWidth="400"
+                      fitHeight="400"
+                      preserveRatio="true"
+                      mouseTransparent="true"
+                      AnchorPane.rightAnchor="120"
+                      AnchorPane.bottomAnchor="40"/>
 
            <ImageView fx:id="npcImageView"
                       visible="false"

@@ -4,6 +4,9 @@ import com.gui.model.CharacterMiniGame.Character;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import com.gui.model.CharacterMiniGame.Enemy.Dragon;
@@ -12,36 +15,58 @@ import com.gui.model.CharacterMiniGame.NPC.Npc;
 
 public class RandomNE {
     private ArrayList<Npc> npclist;
-    private ArrayList<Goblin> enemylist;
-    private ArrayList<Dragon> miniboslist;
     private Random random;
     private Character player;
     private Consumer<String> onLog;
     private Consumer<String> onGambar;
-    private Goblin musuhAktif;
+    private Character musuhAktif;
     private Npc npcAktif;
     
     public RandomNE(Character player, Consumer<String> onLog, Consumer<String> onGambar){
         npclist = new ArrayList<>();
-        enemylist = new ArrayList<>();
-        miniboslist = new ArrayList<>();
         random = new Random();
         this.player = player;
         this.onLog = onLog;
         this.onGambar = onGambar;
         
         npclist.add(new Npc("Kakek buta"));
-        enemylist.add(new Goblin("Goblin", 20, 10, false));
-        miniboslist.add(new Dragon("Dragon", 20, 30, false));
 
     }
     
-    public Goblin getMusuhAktif() {
+    public Character getMusuhAktif() {
         return musuhAktif;
     }
 
     public Npc getNpcAktif() {
         return npcAktif;
+    }
+
+    public void attackDragon(){
+        ScheduledExecutorService schedul = Executors.newScheduledThreadPool(1);
+        npcAktif = null;
+        onGambar.accept("npc_hilang");
+        onGambar.accept("goblin_hilang");
+        onGambar.accept("character_muncul");
+        
+        Dragon dragon = new Dragon("Dragon", 100, 30, false);
+        musuhAktif = dragon;
+        onGambar.accept("naga_muncul");
+        onLog.accept("Kamu membangunkan naga yang sedang tertidur");
+
+        schedul.scheduleAtFixedRate(() -> {
+            if(player.getHp() != 0 && dragon.getHp() != 0){
+                onGambar.accept("naga_nyerang");
+                dragon.attackCharacter(player);
+                onLog.accept("Dragon menyerangmu! HP tersisa: " + player.getHp());
+
+                schedul.schedule(() ->{
+                    onGambar.accept("naga_muncul");
+                }, 1, TimeUnit.SECONDS);
+                
+            }else{
+                schedul.shutdown();
+            }
+        }, 0, 2, TimeUnit.SECONDS);
     }
 
     public void randomEncounter(){
@@ -65,22 +90,24 @@ public class RandomNE {
 
 
         } else if (chance < 50) {
+            ScheduledExecutorService schedul = Executors.newScheduledThreadPool(1);
             // Encounter Goblin
             npcAktif = null;
             onGambar.accept("npc_hilang");
             onGambar.accept("character_muncul");
-            Goblin enemy = enemylist.get(random.nextInt(enemylist.size()));
+            Goblin enemy = new Goblin("Goblin", 20, 10, false);
             musuhAktif = enemy;
             onGambar.accept("goblin_muncul");
             onLog.accept("Kamu bertemu dengan " + enemy.getUsername() + "!");
-            enemy.attackCharacter(player);
-            
-            if(!player.isAlive()){
-                onLog.accept("kamu sudah mati");
-                onGambar.accept("character_mati");
-            }else{
-                onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
-            }
+
+            schedul.scheduleAtFixedRate(() -> {
+                if(player.getHp() != 0 && enemy.getHp() != 0){
+                    enemy.attackCharacter(player);
+                    onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
+                }else{
+                    schedul.shutdown();
+                }
+            }, 0, 2, TimeUnit.SECONDS);
 
         } else {
             musuhAktif = null;
