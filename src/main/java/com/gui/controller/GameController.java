@@ -181,6 +181,14 @@ public class GameController extends BaseController{
                 npcImageView.setVisible(false);
             }
 
+            case "hadiah_npc" -> {
+                var stream = getClass().getResourceAsStream("/Images/npc_hadiah_pertempuran.png");
+                if(stream != null){
+                    bgimagepertempuran.setImage(new Image(stream));
+                }
+                npcImageView.setVisible(false);
+            }
+
             case "naga_tidur_muncul" -> {
                 var stream = getClass().getResourceAsStream("/Images/nagaPertempuran.png");
                 if(stream != null){

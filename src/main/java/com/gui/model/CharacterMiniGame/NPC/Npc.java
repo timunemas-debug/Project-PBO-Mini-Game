@@ -33,6 +33,5 @@ public class Npc {
         onLog.accept("Gimana melawan naga itu? pasti kamu kesusahan ya.");
         onLog.accept("Terimakasih ya anak muda..., ini saya kasih kamu hadiah semoga bisa membantu kamu untuk berpetualang");
         onLog.accept("-------------------------------------------------");
-
     }
 }

@@ -13,6 +13,8 @@ import com.gui.model.CharacterMiniGame.Enemy.Dragon;
 import com.gui.model.CharacterMiniGame.Enemy.Goblin;
 import com.gui.model.CharacterMiniGame.NPC.Npc;
 
+import javafx.application.Platform;
+
 public class RandomNE {
     private ArrayList<Npc> npclist;
     private Random random;
@@ -55,9 +57,12 @@ public class RandomNE {
 
         schedul.scheduleAtFixedRate(() -> {
             if(player.getHp() != 0 && dragon.getHp() != 0){
-                onGambar.accept("naga_nyerang");
-                dragon.attackCharacter(player);
-                onLog.accept("Dragon menyerangmu! HP tersisa: " + player.getHp());
+
+                Platform.runLater(() -> {
+                    onGambar.accept("naga_nyerang");
+                    dragon.attackCharacter(player);
+                    onLog.accept("Dragon menyerangmu! HP tersisa: " + player.getHp());
+                });
 
                 schedul.schedule(() ->{
                     onGambar.accept("naga_muncul");
@@ -102,8 +107,10 @@ public class RandomNE {
 
             schedul.scheduleAtFixedRate(() -> {
                 if(player.getHp() != 0 && enemy.getHp() != 0){
-                    enemy.attackCharacter(player);
-                    onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
+                    Platform.runLater(() -> {
+                        enemy.attackCharacter(player);
+                        onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
+                    });
                 }else{
                     schedul.shutdown();
                 }
