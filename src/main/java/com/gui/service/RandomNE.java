@@ -23,13 +23,15 @@ public class RandomNE {
     private Consumer<String> onGambar;
     private Character musuhAktif;
     private Npc npcAktif;
+    private Runnable onMati;
     
-    public RandomNE(Character player, Consumer<String> onLog, Consumer<String> onGambar){
+    public RandomNE(Character player, Consumer<String> onLog, Consumer<String> onGambar, Runnable onMati){
         npclist = new ArrayList<>();
         random = new Random();
         this.player = player;
         this.onLog = onLog;
         this.onGambar = onGambar;
+        this.onMati = onMati;
         
         npclist.add(new Npc("Kakek buta"));
 
@@ -70,6 +72,9 @@ public class RandomNE {
                 
             }else{
                 schedul.shutdown();
+                Platform.runLater(() -> {
+                    onMati.run();
+                });
             }
         }, 0, 2, TimeUnit.SECONDS);
     }
@@ -112,7 +117,11 @@ public class RandomNE {
                         onLog.accept(enemy.getUsername() + " menyerangmu! HP tersisa: " + player.getHp());
                     });
                 }else{
+                    System.out.println("telah mati");
                     schedul.shutdown();
+                    Platform.runLater(() -> {
+                        onMati.run();
+                    });
                 }
             }, 0, 2, TimeUnit.SECONDS);
 

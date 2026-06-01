@@ -16,18 +16,19 @@ public class Pertempuran {
     private Consumer<String> onCounter;
     private Consumer<String> onGambar;
     private DialogManager dialogManager = new DialogManager();
+    private Runnable onMati;
 
     private Scanner input = new Scanner(System.in);
 
     public Pertempuran(Character player){
-        this(player, System.out::println, gambar -> {});
+        this(player, System.out::println, gambar -> {}, () -> {});
     }
 
-    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onGambar){
+    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onGambar, Runnable onMati){
         this.player = player;
         this.onLog = onLog;
         this.onGambar = onGambar;
-        encounter = new RandomNE(player, onLog, onGambar);
+        encounter = new RandomNE(player, onLog, onGambar, onMati);
     }
 
     public Character getPlayer() {

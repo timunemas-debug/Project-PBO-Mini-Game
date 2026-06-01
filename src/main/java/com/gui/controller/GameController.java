@@ -1,14 +1,12 @@
 package com.gui.controller;
 
-import com.gui.service.ChooseCharacter;
-import com.gui.service.Pertempuran;
-
 import java.util.Random;
 
 import com.gui.model.CharacterMiniGame.Character;
 import com.gui.model.CharacterMiniGame.Draven;
 import com.gui.model.CharacterMiniGame.Enemy.Goblin;
 import com.gui.model.CharacterMiniGame.Enemy.Dragon;
+import com.gui.service.*;
 
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -61,6 +59,8 @@ public class GameController extends BaseController{
     private Character player;
     private Random random = new Random();
     private PauseTransition logDelay = new PauseTransition(Duration.seconds(2));
+    private ActionEvent lastEvent;
+    private RandomNE encounter;
 
     
     public void initialize(){
@@ -243,8 +243,8 @@ public class GameController extends BaseController{
         }
     }
 
-    private void gameOverCharacter(ActionEvent event)throws Exception{
-        if(pertempuran == null){
+    private void gameOverCharacter()throws Exception{
+        if(player == null){
             System.out.println("EROR: GAME OVER");
             return;
         }
@@ -266,7 +266,7 @@ public class GameController extends BaseController{
             PauseTransition delay = new PauseTransition(Duration.seconds(20));
             delay.setOnFinished(e -> {
                 try {
-                    switchScene(event, "/fxml/lobby.fxml");
+                    switchScene(lastEvent, "/fxml/lobby.fxml");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -295,11 +295,19 @@ public class GameController extends BaseController{
             d.setOnGambar(state -> handleGambar(state));
         }
         this.player = player;
-        this.pertempuran = new Pertempuran(player,
+        this.pertempuran = new Pertempuran(
+            player,
             msg -> showLog(msg),
-            state -> handleGambar(state)
+            state -> handleGambar(state),
+            () -> {
+                try {
+                    gameOverCharacter();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         );
-        showLog("Pertempuran dimulai! Selamat datang, " + player.getUsername() + "\n");
+    showLog("Pertempuran dimulai! Selamat datang, " + player.getUsername() + "\n");
     }
 
     private void tampilNext() {
@@ -318,15 +326,12 @@ public class GameController extends BaseController{
     
     @FXML
     private void onJalan(ActionEvent event){
+        lastEvent = event;
         if(pertempuran == null){
             System.out.println("EROR ON JALAN");
+            return;
         }
         pertempuran.aksiJalan();
-        try {
-            gameOverCharacter(event);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -358,7 +363,7 @@ public class GameController extends BaseController{
                 handleGambar("naga_mati");
             }
         }
-        gameOverCharacter(event);
+        gameOverCharacter();
     }
 
     @FXML
