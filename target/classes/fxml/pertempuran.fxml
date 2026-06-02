@@ -93,8 +93,26 @@
                       mouseTransparent="true"
                       AnchorPane.rightAnchor="120"
                       AnchorPane.bottomAnchor="40"/>
+                      
+                      
+                </AnchorPane>
 
-   </AnchorPane>
+        <ImageView fx:id="hadiahImageView"
+                visible="false"
+                fitWidth="500"
+                fitHeight="500"
+                preserveRatio="true"
+                mouseTransparent="true"
+                StackPane.Alignment="CENTER"/>
+     
+        <ImageView fx:id="petiImageView"
+                visible="false"
+                fitWidth="500"
+                fitHeight="500"
+                preserveRatio="true"
+                mouseTransparent="true"
+                StackPane.Alignment="CENTER"/>
+
 <TextArea fx:id="logArea"
           prefHeight="80"
           prefWidth="300"
@@ -106,24 +124,31 @@
           styleClass="log-area"
           StackPane.alignment="TOP_CENTER"/>
 
-        <BorderPane>
-                <top>
-                        <VBox alignment="CENTER_LEFT"
-                              spacing="15">
-                        <padding>
-                            <Insets top="20" left="20"/>
-                        </padding>
-                        <Button fx:id="btnExit"
+          <BorderPane>
+                  <top>
+                          <VBox alignment="CENTER_LEFT"
+                                spacing="15">
+                          <padding>
+                                  <Insets top="20" left="20"/>
+                          </padding>
+                                <Button fx:id="btnExit"
                                 text="EXIT"
                                 prefWidth="250"
                                 prefHeight="50"
                                 styleClass="btn-exit-pertempuran"
                                 onAction="#exitGame"/>
-                        <Button fx:id="btnNext"
+                                <Button fx:id="btnNext"
                                 text="NEXT"
                                 onAction="#nextDialog"
                                 visible="false"/>
-                    </VBox>
+                                <Button fx:id="btnHadiah"
+                                        text="HADIAH"
+                                        prefWidth="250"
+                                        prefHeight="50"
+                                        onAction="#hadiahNpc"
+                                        visible="false"
+                                        styleClass="btn-hadiah-npc"/>
+                        </VBox>
                 </top>
 
                 <bottom>

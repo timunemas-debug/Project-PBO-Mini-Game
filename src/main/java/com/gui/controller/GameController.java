@@ -6,6 +6,7 @@ import com.gui.model.CharacterMiniGame.Character;
 import com.gui.model.CharacterMiniGame.Draven;
 import com.gui.model.CharacterMiniGame.Enemy.Goblin;
 import com.gui.model.CharacterMiniGame.Enemy.Dragon;
+import com.gui.model.CharacterMiniGame.Item;
 import com.gui.service.*;
 
 import javafx.animation.PauseTransition;
@@ -39,6 +40,8 @@ public class GameController extends BaseController{
     @FXML
     private Button btnHome;
     @FXML
+    private Button btnHadiah;
+    @FXML
     private TextArea logArea;
     @FXML
     private ImageView goblinImageView;
@@ -56,7 +59,11 @@ public class GameController extends BaseController{
     private ImageView gameoverbgImageView;
     @FXML
     private ImageView characterMenyeranImageView;
-
+    @FXML
+    private ImageView hadiahImageView;
+    @FXML
+    private ImageView petiImageView;
+    private Reward rewardService = new Reward();
     private Pertempuran pertempuran;
     private Character player;
     private Random random = new Random();
@@ -258,6 +265,39 @@ public class GameController extends BaseController{
                     gameoverbgImageView.setVisible(true);
                 }
             }
+            
+            case "hadiah_random" -> {
+                String[] hadiah = {
+                    "/Images/hadiahpedang.png",
+                    "/Images/hadiaharmor.png"
+                };
+                String randomHadiah = hadiah[random.nextInt(hadiah.length)];
+                var stream = getClass().getResourceAsStream(randomHadiah);
+                if(stream != null){
+                    hadiahImageView.setImage(new Image(stream));
+                    hadiahImageView.setVisible(true);
+                }
+            }
+
+            case "peti_terbuka" -> {
+                var stream = getClass().getResourceAsStream("/Images/petiterbuka.png");
+                if(stream != null){
+                    petiImageView.setImage(new Image(stream));
+                    petiImageView.setVisible(true);
+                }
+            }
+
+            case "peti_tertutup" -> {
+                var stream = getClass().getResourceAsStream("/Images/petitertutup.png");
+                if(stream != null){
+                    petiImageView.setImage(new Image(stream));
+                    petiImageView.setVisible(true);
+                }
+            }
+            
+            case "peti_hilang" -> {
+                petiImageView.setVisible(false);
+            }
 
         }
     }
@@ -394,6 +434,9 @@ public class GameController extends BaseController{
                 }else if(musuh instanceof Dragon){
                     handleGambar("naga_mati");
                 }
+                handleGambar("peti_tertutup");
+                btnHadiah.setVisible(true);
+
             }
 
             try {
@@ -415,6 +458,32 @@ public class GameController extends BaseController{
     @FXML
     private void nextDialog(ActionEvent event){
         tampilNext();
+    }
+
+    @FXML
+    private void hadiahNpc(ActionEvent event){
+        handleGambar("peti_terbuka");
+        handleGambar("hadiah_random");
+        handleGambar("peti_hilang");
+        btnHadiah.setDisable(true);
+
+        Item item = rewardService.getRandomItem();
+
+        if(item.getType().equals("Weapon")){
+            player.setAttackPower(player.getAttackPower() + item.getPlusPower());
+            showLog("Kamu mendapatkan " + item.getName() + "! ATK + " + item.getPlusPower());
+        }else if(item.getType().equals("Armor")){
+            player.setHp(player.getHp() + item.getPlusPower());
+            showLog("Kamu mendapatkan " + item.getName() + "! HP + " + item.getPlusPower());
+        }
+
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(e -> {
+            hadiahImageView.setVisible(false);
+            petiImageView.setVisible(false);
+            btnHadiah.setVisible(false);
+        });
+        delay.play();
     }
 
     @FXML

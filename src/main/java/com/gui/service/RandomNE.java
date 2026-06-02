@@ -93,7 +93,7 @@ public class RandomNE {
 
         int chance = random.nextInt(100);
 
-        if (chance < 70) {
+        if (chance < 80) {
             // Encounter NPC
             musuhAktif = null;
             Npc npc = npclist.get(random.nextInt(npclist.size()));

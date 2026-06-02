@@ -1,3 +1,4 @@
+com/gui/controller/PertempuranController.class
 com/gui/controller/GameController.class
 com/gui/controller/MainMenuController.class
 com/gui/Main.class
@@ -23,4 +24,6 @@ com/gui/service/DisplayMenu.class
 com/gui/controller/ProfileController.class
 com/gui/service/Pertempuran.class
 com/gui/model/CharacterMiniGame/Character$DisplayPlayer.class
+com/gui/service/DialogManager$Entry.class
+com/gui/service/DialogManager.class
 com/gui/service/Inventory.class
