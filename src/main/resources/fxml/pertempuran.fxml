@@ -85,6 +85,15 @@
                       AnchorPane.leftAnchor="250"
                       AnchorPane.bottomAnchor="50"/>
 
+           <ImageView fx:id="characterMenyeranImageView"
+                      visible="false"
+                      fitWidth="400"
+                      fitHeight="400"
+                      preserveRatio="true"
+                      mouseTransparent="true"
+                      AnchorPane.rightAnchor="120"
+                      AnchorPane.bottomAnchor="40"/>
+
    </AnchorPane>
 <TextArea fx:id="logArea"
           prefHeight="80"

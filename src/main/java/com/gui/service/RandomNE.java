@@ -16,6 +16,7 @@ import com.gui.model.CharacterMiniGame.NPC.Npc;
 import javafx.application.Platform;
 
 public class RandomNE {
+
     private ArrayList<Npc> npclist;
     private Random random;
     private Character player;
@@ -52,20 +53,20 @@ public class RandomNE {
         onGambar.accept("goblin_hilang");
         onGambar.accept("character_muncul");
         
-        Dragon dragon = new Dragon("Dragon", 100, 30, false);
+        Dragon dragon = new Dragon("Dragon", 100, 5, false);
         musuhAktif = dragon;
         onGambar.accept("naga_muncul");
         onLog.accept("Kamu membangunkan naga yang sedang tertidur");
 
         schedul.scheduleAtFixedRate(() -> {
             if(player.getHp() != 0 && dragon.getHp() != 0){
-
+                
+                onGambar.accept("character_menyerang_hilang");
                 Platform.runLater(() -> {
                     onGambar.accept("naga_nyerang");
                     dragon.attackCharacter(player);
                     onLog.accept("Dragon menyerangmu! HP tersisa: " + player.getHp());
                 });
-
                 schedul.schedule(() ->{
                     onGambar.accept("naga_muncul");
                 }, 1, TimeUnit.SECONDS);
@@ -73,7 +74,12 @@ public class RandomNE {
             }else{
                 schedul.shutdown();
                 Platform.runLater(() -> {
-                    onMati.run();
+                    if(player.getHp() <= 0){
+                        onMati.run();
+                    }else{
+                        onGambar.accept("naga_mati");
+                        onGambar.accept("character_menyerang_hilang");
+                    }
                 });
             }
         }, 0, 2, TimeUnit.SECONDS);
@@ -87,7 +93,7 @@ public class RandomNE {
 
         int chance = random.nextInt(100);
 
-        if (chance < 10) {
+        if (chance < 70) {
             // Encounter NPC
             musuhAktif = null;
             Npc npc = npclist.get(random.nextInt(npclist.size()));

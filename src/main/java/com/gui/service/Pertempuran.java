@@ -70,7 +70,11 @@ public class Pertempuran {
             onGambar.accept("character_muncul");
             encounter.attackDragon();
         });
-        dialogManager.addWithAksi("Gimana melawan naga itu? pasti kamu kesusahan ya.", null);
+        dialogManager.addWithAksi("Gimana melawan naga itu? pasti kamu kesusahan ya.", () -> {
+            onGambar.accept("hadiah_npc");
+            onGambar.accept("character_muncul");
+            onGambar.accept("naga_hilang");
+        });
         dialogManager.addWithAksi("Terimakasih ya anak muda..., ini saya kasih kamu hadiah semoga bisa membantu kamu untuk berpetualang", () ->{
             System.out.println("lambda di eskekusi");
             System.out.println("on gambar null? " + (onGambar == null));

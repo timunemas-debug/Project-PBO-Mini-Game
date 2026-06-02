@@ -54,6 +54,8 @@ public class GameController extends BaseController{
     private ImageView nagaImageView;
     @FXML
     private ImageView gameoverbgImageView;
+    @FXML
+    private ImageView characterMenyeranImageView;
 
     private Pertempuran pertempuran;
     private Character player;
@@ -128,8 +130,25 @@ public class GameController extends BaseController{
                 }
             }
 
+            case "character_menyerang" -> {
+                String[] backgrounds = {
+                    "/Images/dravenmenyerang.png",
+                    "/Images/dravenmenyerang2.png"
+                };
+                String randomMenyerang = backgrounds[random.nextInt(backgrounds.length)];
+                var stream = getClass().getResourceAsStream(randomMenyerang);
+                if(stream != null){
+                    characterMenyeranImageView.setImage(new Image(stream));
+                    characterMenyeranImageView.setVisible(true);
+                }
+            }
+
             case "character_hilang" -> {
                 characterImageView.setVisible(false);
+            }
+            
+            case "character_menyerang_hilang" -> {
+                characterMenyeranImageView.setVisible(false);
             }
 
             case "goblin_muncul" -> {
@@ -256,10 +275,13 @@ public class GameController extends BaseController{
             btnNpc.setDisable(true);
             btnAttack.setDisable(true);
             btnExit.setDisable(true);
+            btnNext.setVisible(true);
+            btnNext.setDisable(true);
 
             handleGambar("character_hilang");
             handleGambar("character_mati");
             handleGambar("gameover_muncul");
+            handleGambar("character_menyerang_hilang");
 
             showLog(player.getUsername() + " Telah mati");
     
@@ -319,7 +341,7 @@ public class GameController extends BaseController{
         btnNext.setVisible(false);
         logArea.setVisible(false);
         if(pertempuran.getMusuhAktif() != null){
-            btnJalan.setDisable(true);
+            btnNpc.setDisable(true);
         }
     }
 }
@@ -353,17 +375,35 @@ public class GameController extends BaseController{
             showLog("tidak ada musuh untuk diserang!");
             return;
         }
+        
         player.attackCharacter(musuh);
+        handleGambar("character_menyerang");
+        handleGambar("character_hilang");
 
-        if(musuh.getHp() <= 0){
-            showLog(musuh.getUsername() + " Sudah mati\n");
-            if(musuh instanceof Goblin){
-                handleGambar("goblin_mati");
-            }else if(musuh instanceof Dragon){
-                handleGambar("naga_mati");
+        PauseTransition pause = new PauseTransition(Duration.millis(600));
+
+        pause.setOnFinished(e -> {
+
+            handleGambar("character_muncul");
+
+            if(musuh.getHp() <= 0){
+                showLog(musuh.getUsername() + " Sudah mati\n");
+                if(musuh instanceof Goblin){
+                    handleGambar("goblin_mati");
+                    handleGambar("character_menyerang_hilang");
+                }else if(musuh instanceof Dragon){
+                    handleGambar("naga_mati");
+                }
             }
-        }
-        gameOverCharacter();
+
+            try {
+                gameOverCharacter();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        pause.play();
     }
 
     @FXML
