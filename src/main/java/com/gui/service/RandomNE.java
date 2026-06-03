@@ -53,7 +53,7 @@ public class RandomNE {
         onGambar.accept("goblin_hilang");
         onGambar.accept("character_muncul");
         
-        Dragon dragon = new Dragon("Dragon", 100, 5, false);
+        Dragon dragon = new Dragon("Dragon", 200, 5, false);
         musuhAktif = dragon;
         onGambar.accept("naga_muncul");
         onLog.accept("Kamu membangunkan naga yang sedang tertidur");
@@ -93,7 +93,7 @@ public class RandomNE {
 
         int chance = random.nextInt(100);
 
-        if (chance < 80) {
+        if (chance < 60) {
             // Encounter NPC
             musuhAktif = null;
             Npc npc = npclist.get(random.nextInt(npclist.size()));
@@ -111,7 +111,7 @@ public class RandomNE {
             npcAktif = null;
             onGambar.accept("npc_hilang");
             onGambar.accept("character_muncul");
-            Goblin enemy = new Goblin("Goblin", 20, 10, false);
+            Goblin enemy = new Goblin("Goblin", 50, 10, false);
             musuhAktif = enemy;
             onGambar.accept("goblin_muncul");
             onLog.accept("Kamu bertemu dengan " + enemy.getUsername() + "!");

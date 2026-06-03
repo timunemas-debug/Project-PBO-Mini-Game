@@ -99,8 +99,8 @@
 
         <ImageView fx:id="hadiahImageView"
                 visible="false"
-                fitWidth="500"
-                fitHeight="500"
+                fitWidth="800"
+                fitHeight="800"
                 preserveRatio="true"
                 mouseTransparent="true"
                 StackPane.Alignment="CENTER"/>

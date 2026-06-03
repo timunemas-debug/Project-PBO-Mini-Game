@@ -17,17 +17,19 @@ public class Pertempuran {
     private Consumer<String> onGambar;
     private DialogManager dialogManager = new DialogManager();
     private Runnable onMati;
+    private Runnable onHadiahNpc;
 
     private Scanner input = new Scanner(System.in);
 
     public Pertempuran(Character player){
-        this(player, System.out::println, gambar -> {}, () -> {});
+        this(player, System.out::println, gambar -> {}, () -> {}, () -> {});
     }
 
-    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onGambar, Runnable onMati){
+    public Pertempuran(Character player, Consumer<String> onLog, Consumer<String> onGambar, Runnable onMati, Runnable onHadiahNpc){
         this.player = player;
         this.onLog = onLog;
         this.onGambar = onGambar;
+        this.onHadiahNpc = onHadiahNpc;
         encounter = new RandomNE(player, onLog, onGambar, onMati);
     }
 
@@ -81,6 +83,10 @@ public class Pertempuran {
             onGambar.accept("hadiah_npc");
             onGambar.accept("character_muncul");
             onGambar.accept("naga_hilang");
+            onGambar.accept("peti_tertutup");
+            if(onHadiahNpc != null){
+                onHadiahNpc.run();
+            }
         });
     }
 

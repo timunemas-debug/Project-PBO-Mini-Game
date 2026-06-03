@@ -96,6 +96,16 @@ public class GameController extends BaseController{
         }
     }
 
+    private void loadImage(ImageView view, String path){
+        var stream = getClass().getResourceAsStream(path);
+        if(stream != null){
+            view.setImage(new Image(stream));
+            view.setVisible(true);
+        }else{
+            System.out.println("WARNING: Gambar tidak ditemukan -> " + path);
+        }
+    }
+
     public void handleGambar(String state){
 
         Character selected = ChooseCharacter.getSelectCharacter();
@@ -106,11 +116,7 @@ public class GameController extends BaseController{
         switch(state){
 
             case "character_muncul" -> {
-                var stream = getClass().getResourceAsStream(characterPath);
-                if(stream != null){
-                    characterImageView.setImage(new Image(stream));
-                    characterImageView.setVisible(true);
-                }
+                loadImage(characterImageView, characterPath);
             }
 
             case "character_get_heal" -> {
@@ -130,11 +136,7 @@ public class GameController extends BaseController{
             }
 
             case "character_mati" -> {
-                var stream = getClass().getResourceAsStream("/Images/dravenMatiPertempuran.png");
-                if(stream != null){
-                    characterMatiImageView.setImage(new Image(stream));
-                    characterMatiImageView.setVisible(true);
-                }
+                loadImage(characterMatiImageView,"/Images/dravenMatiPertempuran.png");
             }
 
             case "character_menyerang" -> {
@@ -179,12 +181,7 @@ public class GameController extends BaseController{
             }
 
             case "goblin_mati" -> {
-                var stream = getClass().getResourceAsStream("/Images/GoblinMatiPertempuran.png");
-
-                if(stream != null){
-                    goblinImageView.setImage(new Image(stream));
-                    goblinImageView.setVisible(true);
-                }
+                loadImage(goblinImageView, "/Images/GoblinMatiPertempuran.png");
             }
 
             case "goblin_hilang" -> {
@@ -236,11 +233,7 @@ public class GameController extends BaseController{
             }
 
             case "naga_nyerang" -> {
-                var stream = getClass().getResourceAsStream("/Images/naga_nyerang.png");
-                if(stream != null){
-                    nagaImageView.setImage(new Image(stream));
-                    nagaImageView.setVisible(true);
-                }
+                loadImage(nagaImageView, "/Images/naga_nyerang.png");
             }
 
             case "naga_hilang" -> {
@@ -251,19 +244,11 @@ public class GameController extends BaseController{
             }
 
             case "naga_mati" -> {
-                var stream = getClass().getResourceAsStream("/Images/nagamati.png");
-                if(stream != null){
-                    nagaImageView.setImage(new Image(stream));
-                    nagaImageView.setVisible(true);
-                }
+                loadImage(nagaImageView, "/Images/nagamati.png");
             }
 
             case "gameover_muncul" -> {
-                var stream = getClass().getResourceAsStream("/Images/gameoverbg.png");
-                if(stream != null){
-                    gameoverbgImageView.setImage(new Image(stream));
-                    gameoverbgImageView.setVisible(true);
-                }
+                loadImage(gameoverbgImageView, "/Images/gameoverbg.png");
             }
             
             case "hadiah_random" -> {
@@ -280,19 +265,11 @@ public class GameController extends BaseController{
             }
 
             case "peti_terbuka" -> {
-                var stream = getClass().getResourceAsStream("/Images/petiterbuka.png");
-                if(stream != null){
-                    petiImageView.setImage(new Image(stream));
-                    petiImageView.setVisible(true);
-                }
+                loadImage(petiImageView, "/Images/petiterbuka.png");
             }
 
             case "peti_tertutup" -> {
-                var stream = getClass().getResourceAsStream("/Images/petitertutup.png");
-                if(stream != null){
-                    petiImageView.setImage(new Image(stream));
-                    petiImageView.setVisible(true);
-                }
+                loadImage(petiImageView, "/Images/petitertutup.png");
             }
             
             case "peti_hilang" -> {
@@ -367,6 +344,10 @@ public class GameController extends BaseController{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            },
+            () -> {
+                btnHadiah.setVisible(true);
+                btnHadiah.setDisable(false);
             }
         );
     showLog("Pertempuran dimulai! Selamat datang, " + player.getUsername() + "\n");
@@ -419,24 +400,33 @@ public class GameController extends BaseController{
         player.attackCharacter(musuh);
         handleGambar("character_menyerang");
         handleGambar("character_hilang");
+        
+        btnJalan.setVisible(false);
+        btnNpc.setVisible(false);
+
 
         PauseTransition pause = new PauseTransition(Duration.millis(600));
 
         pause.setOnFinished(e -> {
 
             handleGambar("character_muncul");
+            handleGambar("character_menyerang");
+            handleGambar("character_menyerang_hilang");
 
             if(musuh.getHp() <= 0){
                 showLog(musuh.getUsername() + " Sudah mati\n");
                 if(musuh instanceof Goblin){
                     handleGambar("goblin_mati");
-                    handleGambar("character_menyerang_hilang");
+                    handleGambar("character_muncul");
+                    btnJalan.setVisible(true);
+                    btnNpc.setVisible(true);
+
                 }else if(musuh instanceof Dragon){
                     handleGambar("naga_mati");
-                }
-                handleGambar("peti_tertutup");
-                btnHadiah.setVisible(true);
+                    handleGambar("character_muncul");
+                    btnJalan.setVisible(true);
 
+                }
             }
 
             try {
