@@ -20,6 +20,13 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class GameController extends BaseController{
+    private static final String BG_PERTEMPURAN = "/Images/bgpertempuran.png";
+    private static final String BG_PERTEMPURAN_2 = "/Images/bgpertempuran2.png";
+    private static final String BG_PERTEMPURAN_NAGA = "/Images/bgpertempurannaga.png";
+    private static final String IMG_GOBLIN_HIDUP = "/Images/GoblinHidupPertempuran.png";
+    private static final String IMG_GOBLIN_MATI = "/Images/GoblinMatiPertempuran.png";
+    private static final String IMG_NAGA_MUNCUL = "/Images/nagamuncul.png";
+    private static final String IMG_NAGA_MATI = "/Images/nagamati.png";
 
     @FXML
     private StackPane rootpertempuran;
@@ -74,7 +81,7 @@ public class GameController extends BaseController{
     
     public void initialize(){
         System.out.println("INITIALIZE LOBBY DI CALL");
-        var streampertempuran = getClass().getResourceAsStream("/Images/bgpertempuran.png");
+        var streampertempuran = getClass().getResourceAsStream(BG_PERTEMPURAN);
         
         if(streampertempuran != null){
             bgimagepertempuran.setImage(new Image(streampertempuran));
@@ -145,11 +152,7 @@ public class GameController extends BaseController{
                     "/Images/dravenmenyerang2.png"
                 };
                 String randomMenyerang = backgrounds[random.nextInt(backgrounds.length)];
-                var stream = getClass().getResourceAsStream(randomMenyerang);
-                if(stream != null){
-                    characterMenyeranImageView.setImage(new Image(stream));
-                    characterMenyeranImageView.setVisible(true);
-                }
+                loadImage(characterMenyeranImageView, randomMenyerang);
             }
 
             case "character_hilang" -> {
@@ -162,8 +165,8 @@ public class GameController extends BaseController{
 
             case "goblin_muncul" -> {
                 String[] backgrounds = {
-                    "/Images/bgpertempuran.png",
-                    "/Images/bgpertempuran2.png"
+                    BG_PERTEMPURAN,
+                    BG_PERTEMPURAN_2
                 };
                 String randomBg = backgrounds[random.nextInt(backgrounds.length)];
                 var bgStream = getClass().getResourceAsStream(randomBg);
@@ -172,8 +175,7 @@ public class GameController extends BaseController{
                 }
 
 
-                var stream = getClass().getResourceAsStream("/Images/GoblinHidupPertempuran.png");
-
+                var stream = getClass().getResourceAsStream(IMG_GOBLIN_HIDUP);
                 if(stream != null){
                     goblinImageView.setImage(new Image(stream));
                     goblinImageView.setVisible(true);
@@ -181,7 +183,7 @@ public class GameController extends BaseController{
             }
 
             case "goblin_mati" -> {
-                loadImage(goblinImageView, "/Images/GoblinMatiPertempuran.png");
+                loadImage(goblinImageView, IMG_GOBLIN_MATI);
             }
 
             case "goblin_hilang" -> {
@@ -197,7 +199,7 @@ public class GameController extends BaseController{
             }
             
             case "npc_hilang" -> {
-                var stream = getClass().getResourceAsStream("/Images/bgpertempuran.png");
+                var stream = getClass().getResourceAsStream(BG_PERTEMPURAN);
                 if(stream != null){
                     bgimagepertempuran.setImage(new Image(stream));
                 }
@@ -220,16 +222,12 @@ public class GameController extends BaseController{
             }
 
             case "naga_muncul" -> {
-                var stream_background_naga = getClass().getResourceAsStream("/Images/bgpertempurannaga.png");
+                var stream_background_naga = getClass().getResourceAsStream(BG_PERTEMPURAN_NAGA);
                 if(stream_background_naga != null){
                     bgimagepertempuran.setImage(new Image(stream_background_naga));
                 }
 
-                var stream = getClass().getResourceAsStream("/Images/nagamuncul.png");
-                if(stream != null){
-                    nagaImageView.setImage(new Image(stream));
-                    nagaImageView.setVisible(true);
-                }
+                loadImage(nagaImageView, IMG_NAGA_MUNCUL);
             }
 
             case "naga_nyerang" -> {
@@ -237,14 +235,14 @@ public class GameController extends BaseController{
             }
 
             case "naga_hilang" -> {
-                var stream = getClass().getResourceAsStream("/Images/bgpertempurannaga.png");
+                var stream = getClass().getResourceAsStream(BG_PERTEMPURAN_NAGA);
                 if(stream != null){
                     nagaImageView.setVisible(false);
                 }
             }
 
             case "naga_mati" -> {
-                loadImage(nagaImageView, "/Images/nagamati.png");
+                loadImage(nagaImageView, IMG_NAGA_MATI);
             }
 
             case "gameover_muncul" -> {
@@ -257,11 +255,7 @@ public class GameController extends BaseController{
                     "/Images/hadiaharmor.png"
                 };
                 String randomHadiah = hadiah[random.nextInt(hadiah.length)];
-                var stream = getClass().getResourceAsStream(randomHadiah);
-                if(stream != null){
-                    hadiahImageView.setImage(new Image(stream));
-                    hadiahImageView.setVisible(true);
-                }
+                loadImage(hadiahImageView, randomHadiah);
             }
 
             case "peti_terbuka" -> {

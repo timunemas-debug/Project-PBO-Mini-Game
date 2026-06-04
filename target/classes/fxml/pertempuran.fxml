@@ -132,24 +132,34 @@
                                   <Insets top="20" left="20"/>
                           </padding>
                                 <Button fx:id="btnExit"
-                                text="EXIT"
-                                prefWidth="250"
-                                prefHeight="50"
-                                styleClass="btn-exit-pertempuran"
-                                onAction="#exitGame"/>
-                                <Button fx:id="btnNext"
-                                text="NEXT"
-                                onAction="#nextDialog"
-                                visible="false"/>
-                                <Button fx:id="btnHadiah"
-                                        text="HADIAH"
+                                        text="EXIT"
                                         prefWidth="250"
                                         prefHeight="50"
-                                        onAction="#hadiahNpc"
+                                        styleClass="btn-exit-pertempuran"
+                                        onAction="#exitGame"/>
+                                <Button fx:id="btnNext"
+                                        text="NEXT"
+                                        onAction="#nextDialog"
                                         visible="false"
-                                        styleClass="btn-hadiah-npc"/>
-                        </VBox>
-                </top>
+                                        styleClass="btn-next"/>
+                                </VBox>
+                        </top>
+                <center>
+                             <VBox alignment="CENTER">
+                                <padding>
+                                        <Insets top="200"/>
+                                </padding>
+                                     <Button fx:id="btnHadiah"
+                                             text="HADIAH"
+                                             prefWidth="250"
+                                             prefHeight="50"
+                                             onAction="#hadiahNpc"
+                                             visible="false"
+                                             styleClass="btn-hadiah-npc"/>
+                                     
+                             </VBox>
+                                
+                </center>
 
                 <bottom>
                         <HBox alignment="CENTER"
